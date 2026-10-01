@@ -2,44 +2,37 @@
 
 import * as React from "react";
 import {
-  Layers,
-  Sparkles,
-  Component,
-  Hammer,
-  Palette,
-  Wrench,
-  PencilRuler,
-  Library,
-  Zap,
-  LayoutTemplate,
-  Database,
-  Shapes,
-  Type,
-} from "lucide-react";
+  CATEGORIES,
+  type CategoryId,
+  type CategoryItem,
+} from "@/data/categories";
 
-export const SIDEBAR_CATEGORIES = [
-  { id: "all", name: "All", icon: Layers },
-  { id: "inspiration", name: "Inspiration", icon: Sparkles },
-  { id: "components", name: "Components", icon: Component },
-  { id: "build", name: "Build", icon: Hammer },
-  { id: "visuals", name: "Visuals", icon: Palette },
-  { id: "utilities", name: "Utilities", icon: Wrench },
-  { id: "design-engineers", name: "Design Engineers", icon: PencilRuler },
-  { id: "component-libraries", name: "Component Libraries", icon: Library },
-  { id: "motion", name: "Motion", icon: Zap },
-  { id: "ui-libraries", name: "UI Libraries", icon: LayoutTemplate },
-  { id: "backend-database", name: "Backend & Database", icon: Database },
-  { id: "icons-assets", name: "Icons & Assets", icon: Shapes },
-  { id: "fonts-typography", name: "Fonts & Typography", icon: Type },
-];
+export interface SidebarProps {
+  selectedId?: CategoryId;
+  onSelectCategory?: (categoryId: CategoryId) => void;
+}
 
-export function Sidebar() {
-  const [selectedId, setSelectedId] = React.useState("all");
+export function Sidebar({
+  selectedId: controlledSelectedId,
+  onSelectCategory,
+}: SidebarProps) {
+  const [internalSelectedId, setInternalSelectedId] =
+    React.useState<CategoryId>("all");
+
+  const selectedId = controlledSelectedId ?? internalSelectedId;
+
+  const handleSelect = (id: CategoryId) => {
+    if (onSelectCategory) {
+      onSelectCategory(id);
+    } else {
+      setInternalSelectedId(id);
+    }
+  };
 
   return (
     <nav aria-label="Categories" className="w-full select-none">
       <ul className="space-y-1">
-        {SIDEBAR_CATEGORIES.map((category) => {
+        {CATEGORIES.map((category: CategoryItem) => {
           const isActive = category.id === selectedId;
           const Icon = category.icon;
 
@@ -47,7 +40,7 @@ export function Sidebar() {
             <li key={category.id}>
               <button
                 type="button"
-                onClick={() => setSelectedId(category.id)}
+                onClick={() => handleSelect(category.id)}
                 className={`group flex w-full items-center justify-between rounded-lg px-2.5 py-1.5 small-text transition-colors ${
                   isActive
                     ? "text-foreground font-semibold"

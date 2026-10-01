@@ -4,21 +4,15 @@ import * as React from "react";
 import Link from "next/link";
 import { Drawer } from "vaul";
 import { Home, LayoutGrid, X, Layers, Check } from "lucide-react";
-
-import { SIDEBAR_CATEGORIES } from "./sidebar";
-
-const componentData = {
-  homeHref: "/",
-  categories: SIDEBAR_CATEGORIES.map((category) => ({
-    id: category.id,
-    label: category.name,
-    icon: category.icon,
-  })),
-};
+import {
+  CATEGORIES,
+  type CategoryId,
+  type CategoryItem,
+} from "@/data/categories";
 
 export function MobileDock() {
   const [open, setOpen] = React.useState(false);
-  const [selectedId, setSelectedId] = React.useState("all");
+  const [selectedId, setSelectedId] = React.useState<CategoryId>("all");
 
   return (
     <Drawer.Root open={open} onOpenChange={setOpen}>
@@ -26,9 +20,9 @@ export function MobileDock() {
         aria-label="Mobile Navigation"
         className="fixed bottom-5 left-1/2 z-40 -translate-x-1/2 md:hidden"
       >
-        <div className="flex items-center gap-1 rounded-full border border-border bg-card px-2 py-1.5 shadow-lg">
+        <div className="flex items-center gap-1 rounded-full border border-border bg-card px-2 py-1.5 shadow-sm">
           <Link
-            href={componentData.homeHref}
+            href="/"
             aria-label="Home"
             className="flex size-10 items-center justify-center rounded-full transition hover:bg-muted active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
@@ -72,7 +66,7 @@ export function MobileDock() {
 
           <div className="flex-1 overflow-y-auto px-4 py-3">
             <div className="space-y-1">
-              {componentData.categories.map((category) => {
+              {CATEGORIES.map((category: CategoryItem) => {
                 const isSelected = category.id === selectedId;
                 const Icon = category.icon || Layers;
 
@@ -92,7 +86,7 @@ export function MobileDock() {
                   >
                     <span className="flex items-center gap-3">
                       <Icon className="size-4 shrink-0 opacity-80" />
-                      <span>{category.label}</span>
+                      <span>{category.name}</span>
                     </span>
                     {isSelected && <Check className="size-4 shrink-0" />}
                   </button>
