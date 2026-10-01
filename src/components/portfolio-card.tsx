@@ -30,7 +30,7 @@ export function PortfolioCard({
       className={`block w-full ${className}`}
     >
       <div className="rounded-xl border border-border bg-card p-2">
-        <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg border border-border bg-background">
+        <div className="relative aspect-16/10 w-full overflow-hidden rounded-lg border border-border bg-background">
           <motion.div
             className="absolute inset-x-0 top-0"
             animate={{ y: ["0%", "-58%", "0%"] }}

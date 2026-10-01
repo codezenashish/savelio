@@ -23,9 +23,9 @@ export function DirectoryView() {
   }, [selectedCategory]);
 
   return (
-    <div className="flex min-h-[calc(100svh-5rem)] w-full max-w-6xl gap-12 px-6 py-6 md:gap-16">
+    <div className="flex min-h-[calc(100svh-5rem)] w-full min-w-0 gap-8 px-4 py-6 md:gap-10 md:px-6">
       <aside className="hidden w-56 shrink-0 md:block">
-        <div className="sticky top-0 flex h-svh flex-col justify-center">
+        <div className="sticky top-6 flex h-fit flex-col">
           <Sidebar
             selectedId={selectedCategory}
             onSelectCategory={setSelectedCategory}
