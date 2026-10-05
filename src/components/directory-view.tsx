@@ -3,13 +3,13 @@
 import * as React from "react";
 import { Sidebar } from "@/components/sidebar";
 import { HeroSection } from "@/components/hero-section";
-import { PortfolioCard } from "@/components/portfolio-card";
-import { CATEGORIES, type CategoryId } from "@/data/categories";
-import { SHOWCASE_CARDS, type CardItem } from "@/data/cards";
+import { CardGrid } from "@/components/card-grid";
+import { CATEGORIES } from "@/data/sidebar";
+import { SHOWCASE_CARDS } from "@/data/cards";
+import { useCategory } from "@/components/category-provider";
 
 export function DirectoryView() {
-  const [selectedCategory, setSelectedCategory] =
-    React.useState<CategoryId>("all");
+  const { selectedCategory, setSelectedCategory } = useCategory();
 
   const currentCategory = React.useMemo(() => {
     return (
@@ -42,27 +42,10 @@ export function DirectoryView() {
             <p className="body-text">{currentCategory.description}</p>
           </div>
 
-          {filteredCards.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {filteredCards.map((card: CardItem) => (
-                <PortfolioCard
-                  key={card.id}
-                  title={card.title}
-                  url={card.url}
-                  href={card.href}
-                  image={card.image}
-                  imageHeight={card.imageHeight}
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="rounded-xl border border-border bg-card p-8 text-center">
-              <p className="small-text text-muted-foreground">
-                No items found for {currentCategory.name}. More additions coming
-                soon.
-              </p>
-            </div>
-          )}
+          <CardGrid
+            cards={filteredCards}
+            categoryName={currentCategory.name}
+          />
         </section>
       </main>
     </div>

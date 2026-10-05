@@ -6,13 +6,31 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
+export type FeatureStatus = "Beta" | "Coming Soon" | "Planned";
+
 export interface FeatureItem {
   id: string;
   title: string;
   description: string;
   icon: LucideIcon;
-  status: "Beta" | "Coming Soon" | "Planned";
+  status: FeatureStatus;
 }
+
+export interface BetaDrawerData {
+  badge: string;
+  defaultTitle: string;
+  defaultDescription: string;
+  footerNotice: string;
+}
+
+export const BETA_DRAWER_DATA: BetaDrawerData = {
+  badge: "Beta Roadmap",
+  defaultTitle: "Upcoming Features & Beta Access",
+  defaultDescription:
+    "A preview of capabilities currently in active development for Savelio.",
+  footerNotice:
+    "Have ideas or suggestions for Savelio? These features are rolling out in the upcoming release.",
+};
 
 export const UPCOMING_FEATURES: FeatureItem[] = [
   {

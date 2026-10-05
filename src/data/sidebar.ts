@@ -12,8 +12,25 @@ import {
   Database,
   Shapes,
   Type,
+  Bot,
   type LucideIcon,
 } from "lucide-react";
+
+export type CategoryId =
+  | "all"
+  | "inspiration"
+  | "components"
+  | "build"
+  | "visuals"
+  | "utilities"
+  | "ai-tools"
+  | "design-engineers"
+  | "component-libraries"
+  | "motion"
+  | "ui-libraries"
+  | "backend-database"
+  | "icons-assets"
+  | "fonts-typography";
 
 export interface CategoryItem {
   id: CategoryId;
@@ -23,20 +40,15 @@ export interface CategoryItem {
   icon: LucideIcon;
 }
 
-export type CategoryId =
-  | "all"
-  | "inspiration"
-  | "components"
-  | "build"
-  | "visuals"
-  | "utilities"
-  | "design-engineers"
-  | "component-libraries"
-  | "motion"
-  | "ui-libraries"
-  | "backend-database"
-  | "icons-assets"
-  | "fonts-typography";
+export interface MobileDockData {
+  title: string;
+  description: string;
+}
+
+export const MOBILE_DOCK_DATA: MobileDockData = {
+  title: "Categories",
+  description: "Select a category to filter",
+};
 
 export const CATEGORIES: CategoryItem[] = [
   {
@@ -86,6 +98,14 @@ export const CATEGORIES: CategoryItem[] = [
     description:
       "High-utility helper libraries, avatars, formatting, and everyday dev workflows.",
     icon: Wrench,
+  },
+  {
+    id: "ai-tools",
+    name: "AI Tools",
+    title: "AI & Generative Media Tools",
+    description:
+      "Generative AI models and creative tools for image, video, audio, and code synthesis.",
+    icon: Bot,
   },
   {
     id: "design-engineers",
@@ -144,3 +164,5 @@ export const CATEGORIES: CategoryItem[] = [
     icon: Type,
   },
 ];
+
+export const SIDEBAR_CATEGORIES = CATEGORIES;

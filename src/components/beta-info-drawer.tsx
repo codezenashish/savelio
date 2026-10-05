@@ -3,9 +3,14 @@
 import * as React from "react";
 import { Drawer } from "vaul";
 import { X, Sparkles } from "lucide-react";
-import { UPCOMING_FEATURES, type FeatureItem } from "@/data/features";
+import {
+  UPCOMING_FEATURES,
+  BETA_DRAWER_DATA,
+  type FeatureItem,
+  type BetaDrawerData,
+} from "@/data/features";
 
-export type { FeatureItem };
+export type { FeatureItem, BetaDrawerData };
 
 export interface BetaInfoDrawerProps {
   open: boolean;
@@ -13,14 +18,16 @@ export interface BetaInfoDrawerProps {
   features?: FeatureItem[];
   title?: string;
   description?: string;
+  drawerData?: BetaDrawerData;
 }
 
 export function BetaInfoDrawer({
   open,
   onOpenChange,
   features = UPCOMING_FEATURES,
-  title = "Upcoming Features & Beta Access",
-  description = "A preview of capabilities currently in active development for Savelio.",
+  drawerData = BETA_DRAWER_DATA,
+  title = drawerData.defaultTitle,
+  description = drawerData.defaultDescription,
 }: BetaInfoDrawerProps) {
   return (
     <Drawer.Root open={open} onOpenChange={onOpenChange}>
@@ -34,7 +41,7 @@ export function BetaInfoDrawer({
               <div className="flex items-center gap-2 mb-1">
                 <span className="inline-flex items-center gap-1 rounded-full border border-primary/20 bg-primary/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-primary">
                   <Sparkles className="size-3" />
-                  Beta Roadmap
+                  {drawerData.badge}
                 </span>
               </div>
               <Drawer.Title className="text-lg font-semibold tracking-tight text-foreground">
@@ -98,10 +105,7 @@ export function BetaInfoDrawer({
             })}
 
             <div className="mt-4 rounded-xl border border-border bg-muted/40 p-3.5 text-center small-text">
-              <p>
-                Have ideas or suggestions for Savelio? These features are rolling
-                out in the upcoming release.
-              </p>
+              <p>{drawerData.footerNotice}</p>
             </div>
           </div>
         </Drawer.Content>

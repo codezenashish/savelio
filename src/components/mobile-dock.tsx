@@ -6,13 +6,23 @@ import { Drawer } from "vaul";
 import { Home, LayoutGrid, X, Layers, Check } from "lucide-react";
 import {
   CATEGORIES,
-  type CategoryId,
+  MOBILE_DOCK_DATA,
   type CategoryItem,
-} from "@/data/categories";
+  type MobileDockData,
+} from "@/data/sidebar";
+import { useCategory } from "@/components/category-provider";
 
-export function MobileDock() {
+export interface MobileDockProps {
+  categories?: CategoryItem[];
+  dockData?: MobileDockData;
+}
+
+export function MobileDock({
+  categories = CATEGORIES,
+  dockData = MOBILE_DOCK_DATA,
+}: MobileDockProps) {
   const [open, setOpen] = React.useState(false);
-  const [selectedId, setSelectedId] = React.useState<CategoryId>("all");
+  const { selectedCategory, setSelectedCategory } = useCategory();
 
   return (
     <Drawer.Root open={open} onOpenChange={setOpen}>
@@ -48,9 +58,9 @@ export function MobileDock() {
 
           <div className="flex items-center justify-between border-b border-border px-5 py-3">
             <div>
-              <Drawer.Title className="subheading">Categories</Drawer.Title>
+              <Drawer.Title className="subheading">{dockData.title}</Drawer.Title>
               <Drawer.Description className="small-text">
-                Select a category to filter
+                {dockData.description}
               </Drawer.Description>
             </div>
             <Drawer.Close asChild>
@@ -66,8 +76,8 @@ export function MobileDock() {
 
           <div className="flex-1 overflow-y-auto px-4 py-3">
             <div className="space-y-1">
-              {CATEGORIES.map((category: CategoryItem) => {
-                const isSelected = category.id === selectedId;
+              {categories.map((category: CategoryItem) => {
+                const isSelected = category.id === selectedCategory;
                 const Icon = category.icon || Layers;
 
                 return (
@@ -75,7 +85,7 @@ export function MobileDock() {
                     key={category.id}
                     type="button"
                     onClick={() => {
-                      setSelectedId(category.id);
+                      setSelectedCategory(category.id);
                       setOpen(false);
                     }}
                     className={`flex w-full items-center justify-between rounded-lg px-3.5 py-3 small-text transition-colors ${

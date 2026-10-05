@@ -5,16 +5,18 @@ import {
   CATEGORIES,
   type CategoryId,
   type CategoryItem,
-} from "@/data/categories";
+} from "@/data/sidebar";
 
 export interface SidebarProps {
   selectedId?: CategoryId;
   onSelectCategory?: (categoryId: CategoryId) => void;
+  categories?: CategoryItem[];
 }
 
 export function Sidebar({
   selectedId: controlledSelectedId,
   onSelectCategory,
+  categories = CATEGORIES,
 }: SidebarProps) {
   const [internalSelectedId, setInternalSelectedId] =
     React.useState<CategoryId>("all");
@@ -32,7 +34,7 @@ export function Sidebar({
   return (
     <nav aria-label="Categories" className="w-full select-none">
       <ul className="space-y-1">
-        {CATEGORIES.map((category: CategoryItem) => {
+        {categories.map((category: CategoryItem) => {
           const isActive = category.id === selectedId;
           const Icon = category.icon;
 
