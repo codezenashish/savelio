@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { motion, useReducedMotion } from "motion/react";
 import {
   CATEGORIES,
   type CategoryId,
@@ -18,6 +19,7 @@ export function Sidebar({
   onSelectCategory,
   categories = CATEGORIES,
 }: SidebarProps) {
+  const shouldReduceMotion = useReducedMotion();
   const [internalSelectedId, setInternalSelectedId] =
     React.useState<CategoryId>("all");
 
@@ -43,13 +45,29 @@ export function Sidebar({
               <button
                 type="button"
                 onClick={() => handleSelect(category.id)}
-                className={`group flex w-full items-center justify-between rounded-lg px-2.5 py-1.5 small-text transition-colors ${
+                className={`group relative flex w-full items-center justify-between rounded-lg px-2.5 py-1.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                   isActive
-                    ? "text-foreground font-semibold"
-                    : "text-muted-foreground/80 hover:text-foreground hover:bg-muted/50"
+                    ? "font-semibold text-foreground"
+                    : "text-muted-foreground/80 hover:text-foreground"
                 }`}
               >
-                <div className="flex items-center gap-2.5 min-w-0">
+                {isActive && (
+                  shouldReduceMotion ? (
+                    <span className="absolute inset-0 rounded-lg bg-muted/80 shadow-xs" />
+                  ) : (
+                    <motion.span
+                      layoutId="active-pill"
+                      className="absolute inset-0 rounded-lg bg-muted/80 shadow-xs"
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 30,
+                      }}
+                    />
+                  )
+                )}
+
+                <div className="relative z-10 flex min-w-0 items-center gap-2.5">
                   <Icon
                     className={`size-4 shrink-0 transition-opacity ${
                       isActive
@@ -63,7 +81,7 @@ export function Sidebar({
                 {isActive && (
                   <span
                     aria-hidden="true"
-                    className="size-1.5 shrink-0 rounded-full bg-foreground shadow-xs animate-in fade-in duration-200"
+                    className="relative z-10 size-1.5 shrink-0 rounded-full bg-foreground shadow-xs"
                   />
                 )}
               </button>

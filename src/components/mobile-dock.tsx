@@ -1,9 +1,10 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
 import { Drawer } from "vaul";
-import { Home, LayoutGrid, X, Layers, Check } from "lucide-react";
+import { MorphIcon } from "morphicons/react";
+import { Menu, X } from "lucide"; // data, not components
+import { Layers, Check } from "lucide-react";
 import {
   CATEGORIES,
   MOBILE_DOCK_DATA,
@@ -25,83 +26,78 @@ export function MobileDock({
   const { selectedCategory, setSelectedCategory } = useCategory();
 
   return (
-    <Drawer.Root open={open} onOpenChange={setOpen}>
+    <Drawer.Root direction="right" open={open} onOpenChange={setOpen}>
       <aside
         aria-label="Mobile Navigation"
         className="fixed bottom-5 left-1/2 z-40 -translate-x-1/2 md:hidden"
       >
-        <div className="flex items-center gap-1 rounded-full border border-border bg-card px-2 py-1.5 shadow-sm">
-          <Link
-            href="/"
-            aria-label="Home"
-            className="flex size-10 items-center justify-center rounded-full transition hover:bg-muted active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          >
-            <Home className="size-5" />
-          </Link>
-
-          <Drawer.Trigger asChild>
-            <button
-              type="button"
-              aria-label="Open categories"
-              className="flex size-10 items-center justify-center rounded-full text-foreground/80 transition hover:bg-muted hover:text-foreground active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            >
-              <LayoutGrid className="size-5" />
-            </button>
-          </Drawer.Trigger>
-        </div>
+        <button
+          type="button"
+          onClick={() => setOpen((o) => !o)}
+          aria-expanded={open}
+          aria-label={open ? "Close menu" : "Open menu"}
+          className="relative flex size-12 items-center justify-center rounded-full border border-border bg-card text-foreground shadow-lg transition-all hover:bg-muted active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        >
+          <MorphIcon icon={open ? X : Menu} size={20} />
+        </button>
       </aside>
 
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 z-50 bg-background/80 backdrop-blur-xs" />
-        <Drawer.Content className="fixed inset-x-0 bottom-0 z-50 flex max-h-[85%] flex-col rounded-t-xl border-t border-border bg-card shadow-2xl outline-none">
-          <div className="mx-auto mt-3 h-1 w-10 shrink-0 rounded-full bg-muted-foreground/25" />
-
-          <div className="flex items-center justify-between border-b border-border px-5 py-3">
-            <div>
-              <Drawer.Title className="subheading">{dockData.title}</Drawer.Title>
-              <Drawer.Description className="small-text">
+        <Drawer.Content
+          className="right-2 top-2 bottom-2 fixed z-50 outline-none w-[310px] flex"
+          // The gap between the edge of the screen and the drawer is 8px in this case.
+          style={{ "--initial-transform": "calc(100% + 8px)" } as React.CSSProperties}
+        >
+          <div className="bg-card text-card-foreground border border-border h-full w-full grow p-5 flex flex-col rounded-[16px] shadow-2xl overflow-hidden">
+            <div className="w-full pb-3 border-b border-border">
+              <Drawer.Title className="font-semibold text-base text-foreground">
+                {dockData.title}
+              </Drawer.Title>
+              <Drawer.Description className="text-xs text-muted-foreground mt-1">
                 {dockData.description}
               </Drawer.Description>
             </div>
-            <Drawer.Close asChild>
-              <button
-                type="button"
-                aria-label="Close categories"
-                className="rounded-full p-2 transition hover:bg-muted active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              >
-                <X className="size-4" />
-              </button>
-            </Drawer.Close>
-          </div>
 
-          <div className="flex-1 overflow-y-auto px-4 py-3">
-            <div className="space-y-1">
-              {categories.map((category: CategoryItem) => {
-                const isSelected = category.id === selectedCategory;
-                const Icon = category.icon || Layers;
+            <div className="flex-1 overflow-y-auto pt-3">
+              <div className="space-y-1">
+                {categories.map((category: CategoryItem) => {
+                  const isSelected = category.id === selectedCategory;
+                  const Icon = category.icon || Layers;
 
-                return (
-                  <button
-                    key={category.id}
-                    type="button"
-                    onClick={() => {
-                      setSelectedCategory(category.id);
-                      setOpen(false);
-                    }}
-                    className={`flex w-full items-center justify-between rounded-lg px-3.5 py-3 small-text transition-colors ${
-                      isSelected
-                        ? "bg-foreground font-semibold text-background"
-                        : "hover:bg-muted active:scale-[0.99]"
-                    }`}
-                  >
-                    <span className="flex items-center gap-3">
-                      <Icon className="size-4 shrink-0 opacity-80" />
-                      <span>{category.name}</span>
-                    </span>
-                    {isSelected && <Check className="size-4 shrink-0" />}
-                  </button>
-                );
-              })}
+                  return (
+                    <button
+                      key={category.id}
+                      type="button"
+                      onClick={() => {
+                        setSelectedCategory(category.id);
+                        setOpen(false);
+                        setTimeout(() => {
+                          if (category.id === "all") {
+                            window.scrollTo({ top: 0, behavior: "smooth" });
+                          } else {
+                            const el = document.getElementById(`category-${category.id}`);
+                            if (el) {
+                              el.scrollIntoView({ behavior: "smooth" });
+                            }
+                          }
+                        }, 100);
+                      }}
+                      className={`flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                        isSelected
+                          ? "bg-foreground font-semibold text-background"
+                          : "text-muted-foreground hover:bg-muted hover:text-foreground active:scale-[0.99]"
+                      }`}
+                    >
+                      <span className="flex items-center gap-3">
+                        <Icon className="size-4 shrink-0 opacity-80" />
+                        <span>{category.name}</span>
+                      </span>
+                      {isSelected && <Check className="size-4 shrink-0" />}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </Drawer.Content>

@@ -40,18 +40,25 @@ export function CategoryProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const setSelectedCategory = React.useCallback((category: CategoryId) => {
-    setSelectedCategoryState(category);
-    try {
-      const url = new URL(window.location.href);
-      if (category === "all") {
-        url.searchParams.delete("category");
-      } else {
-        url.searchParams.set("category", category);
+    setSelectedCategoryState((prev) => {
+      if (prev === category) return prev;
+      try {
+        const url = new URL(window.location.href);
+        const currentParam = url.searchParams.get("category");
+        const targetParam = category === "all" ? null : category;
+        if (currentParam !== targetParam) {
+          if (targetParam === null) {
+            url.searchParams.delete("category");
+          } else {
+            url.searchParams.set("category", targetParam);
+          }
+          window.history.replaceState({}, "", url.toString());
+        }
+      } catch {
+        // Ignore if replaceState fails
       }
-      window.history.pushState({}, "", url.toString());
-    } catch {
-      // Ignore if pushState fails
-    }
+      return category;
+    });
   }, []);
 
   return (

@@ -473,5 +473,265 @@
     "title": "GitHub - DavidHDev/rbp-portfolio: React Bits Pro - free personal portfolio template with smooth animations, project case studies, and a minimal aesthetic.",
     "siteName": "GitHub",
     "description": "React Bits Pro - free personal portfolio template with smooth animations, project case studies, and a minimal aesthetic. - DavidHDev/rbp-portfolio"
+  },
+  "whatsapp": {
+    "title": "WhatsApp Web",
+    "siteName": "WhatsApp",
+    "description": "Simple. Secure. Reliable messaging."
+  },
+  "gmail": {
+    "title": "Gmail",
+    "siteName": "Gmail",
+    "description": "Secure, fast, and organized email from Google"
+  },
+  "google-docs": {
+    "title": "Google Docs",
+    "siteName": "Google Docs",
+    "description": "Online document editor for collaboration"
+  },
+  "google-sheets": {
+    "title": "Google Sheets",
+    "siteName": "Google Sheets",
+    "description": "Online spreadsheet editor with powerful analysis"
+  },
+  "google-contacts": {
+    "title": "Google Contacts",
+    "siteName": "Google Contacts",
+    "description": "Google address book and contact management"
+  },
+  "google-photos": {
+    "title": "Google Photos",
+    "siteName": "Google Photos",
+    "description": "Home for all your photos and videos"
+  },
+  "davidhaz-blog": {
+    "title": "David Haz - Web Development Blog",
+    "siteName": "David Haz",
+    "description": "Articles on web design systems and development"
+  },
+  "tweakcn": {
+    "title": "tweakcn — Theme Generator for shadcn/ui",
+    "siteName": "tweakcn",
+    "description": "Interactive theme generator and visual editor for shadcn/ui"
+  },
+  "interview-cake": {
+    "title": "JavaScript Interview Questions & Answers",
+    "siteName": "Interview Cake",
+    "description": "In-depth practice questions for coding interviews"
+  },
+  "youtype": {
+    "title": "YouType — Course Store",
+    "siteName": "YouType",
+    "description": "Touch typing courses and speed drills"
+  },
+  "github-readme-grid": {
+    "title": "GitHub Followers README Grid",
+    "siteName": "GFG Readme",
+    "description": "SVG avatar grid generator for GitHub profiles"
+  },
+  "duck-ai": {
+    "title": "Duck.ai — Private AI Chat by DuckDuckGo",
+    "siteName": "Duck.ai",
+    "description": "Private, free AI chat without tracking"
+  },
+  "design-md": {
+    "title": "DesignMD — Generate DESIGN.md Files with AI",
+    "siteName": "DesignMD",
+    "description": "Generate structured DESIGN.md design documentation using AI"
+  },
+  "shadcnblocks": {
+    "title": "Vercel Theme for shadcn/ui — Shadcnblocks",
+    "siteName": "Shadcnblocks",
+    "description": "Pre-built blocks and themes for shadcn/ui"
+  },
+  "kugiri": {
+    "title": "kugiri (区切り) demo",
+    "siteName": "kugiri",
+    "description": "Minimal Japanese-inspired separator and divider component"
+  },
+  "vaul": {
+    "title": "Vaul — Drawer Component for React",
+    "siteName": "Vaul",
+    "description": "Unstyled drawer component for React by Emil Kowalski"
+  },
+  "componentry": {
+    "title": "Componentry — Animated UI Components for React",
+    "siteName": "Componentry",
+    "description": "Beautiful animated UI components for modern web apps"
+  },
+  "kobra-systems": {
+    "title": "Kobra / React Checkbox Component",
+    "siteName": "Kobra",
+    "description": "Tactile, accessible components for design-first applications"
+  },
+  "aceternity-ui": {
+    "title": "Aceternity UI — Modern UI Components",
+    "siteName": "Aceternity UI",
+    "description": "Trending animated components crafted with Framer Motion & Tailwind"
+  },
+  "uiarc": {
+    "title": "Arc UI: Animated React Components for shadcn",
+    "siteName": "Arc UI",
+    "description": "Delightful interactive components for Next.js and shadcn"
+  },
+  "thinking-orbs": {
+    "title": "Thinking Orbs — Animated Thinking Orb Component",
+    "siteName": "Thinking Orbs",
+    "description": "Smooth fluid morphing orb animations"
+  },
+  "morphicons": {
+    "title": "morphicons — SVG Icon Morphing Library",
+    "siteName": "morphicons",
+    "description": "SVG icon morphing animations for React, Vue & Svelte"
+  },
+  "morphrig": {
+    "title": "Morphrig — Smooth SVG Morphing Engine",
+    "siteName": "Morphrig",
+    "description": "High-performance vector morphing documentation & library"
+  },
+  "motion-primitives": {
+    "title": "Motion-Primitives — Border Trail & Spotlight",
+    "siteName": "Motion-Primitives",
+    "description": "Advanced UI micro-interactions built on Framer Motion"
+  },
+  "amicro": {
+    "title": "Amicro — Premium React Micro-transitions",
+    "siteName": "Amicro",
+    "description": "Micro-interactions and interaction components for React"
+  },
+  "animations-dev": {
+    "title": "animations.dev — Learn Interactive Web Animation",
+    "siteName": "animations.dev",
+    "description": "Mastering web animations with interactive visual guides"
+  },
+  "base-ui": {
+    "title": "Base UI — Unstyled React Components",
+    "siteName": "Base UI",
+    "description": "MUI headless component primitives for custom design systems"
+  },
+  "park-ui": {
+    "title": "Park UI — Beautiful Component Library built on Ark UI",
+    "siteName": "Park UI",
+    "description": "Accessible UI components styled with Panda CSS & Tailwind"
+  },
+  "resend": {
+    "title": "Resend — Email for Developers",
+    "siteName": "Resend",
+    "description": "The best API to reach humans instead of the spam folder"
+  },
+  "podman": {
+    "title": "Podman — Daemonless Container Engine",
+    "siteName": "Podman",
+    "description": "Manage pods, containers and container images"
+  },
+  "hoppscotch": {
+    "title": "Hoppscotch — Open Source API Development Ecosystem",
+    "siteName": "Hoppscotch",
+    "description": "Lightweight, web-based API testing client alternative to Postman"
+  },
+  "framer": {
+    "title": "Framer — The Internet is Your Canvas",
+    "siteName": "Framer",
+    "description": "Design and publish high-performance interactive websites"
+  },
+  "rinkit-adhana": {
+    "title": "Rinkit Adhana — Design Engineer",
+    "siteName": "Rinkit Adhana",
+    "description": "Frontend developer & creative designer portfolio"
+  },
+  "jdhruv-dev": {
+    "title": "Dhruv — Software Developer & Designer",
+    "siteName": "Dhruv",
+    "description": "AI & web projects by software engineer Dhruv"
+  },
+  "samworks": {
+    "title": "Samiran De — Portfolio",
+    "siteName": "Samiran De",
+    "description": "Creative developer portfolio featuring interactive 3D"
+  },
+  "emil-kowalski": {
+    "title": "Emil Kowalski — Design Engineer",
+    "siteName": "Emil Kowalski",
+    "description": "Personal site and creative engineering by Emil Kowalski"
+  },
+  "paco-coursey": {
+    "title": "Paco Coursey — Design Engineer",
+    "siteName": "Paco Coursey",
+    "description": "Design engineer at Linear, craft and interface design"
+  },
+  "metalforge": {
+    "title": "MetalForge — Shaders for SwiftUI, React Native & Web",
+    "siteName": "MetalForge",
+    "description": "Curated shaders collection for mobile and web development"
+  },
+  "fragcoord": {
+    "title": "FragCoord — WebGL Shader Showcase",
+    "siteName": "FragCoord",
+    "description": "Interactive WebGL shader experiments and GLSL gallery"
+  },
+  "svgl": {
+    "title": "Svgl — A Beautiful SVG Logos Library",
+    "siteName": "Svgl",
+    "description": "Crisp vector logos for modern developer brands and tools"
+  },
+  "calligraph": {
+    "title": "Calligraph — Font Comparison Tool",
+    "siteName": "Calligraph",
+    "description": "Compare typography styles, pairings, and font metrics side by side"
+  },
+  "idem-studio": {
+    "title": "Idem Studio | Premium Web Design & Digital Agency",
+    "siteName": "Idem Studio",
+    "description": "Award-winning bespoke digital design agency portfolio"
+  },
+  "404s-design": {
+    "title": "404s — Creative Error Page Designs Gallery",
+    "siteName": "404s.design",
+    "description": "A curated gallery of the web's most creative 404 pages"
+  },
+  "footer-design": {
+    "title": "Footer — The Web Footer Design Gallery",
+    "siteName": "Footer Design",
+    "description": "Curated collection of standout website footer designs"
+  },
+  "developer-portfolios": {
+    "title": "DeveloperPortfolios — Inspiration Showcase",
+    "siteName": "DeveloperPortfolios",
+    "description": "Directory of standout developer and engineer portfolios"
+  },
+  "zero-university": {
+    "title": "Zero — Human Infrastructure to Get Hired",
+    "siteName": "Zero",
+    "description": "Alternative education and career acceleration platform"
+  },
+  "santioni-spirits": {
+    "title": "Santioni Spirits — Interactive Brand Experience",
+    "siteName": "Santioni Spirits",
+    "description": "Bold interactive 3D web experience for craft cocktails"
+  },
+  "kage-monar": {
+    "title": "KAGE — MONAR Showcase",
+    "siteName": "MONAR",
+    "description": "High-energy aesthetic dining brand showcase"
+  },
+  "perfolios": {
+    "title": "perfolios. — Portfolio Inspiration & Directory",
+    "siteName": "perfolios",
+    "description": "Curated directory of exceptional design and dev portfolios"
+  },
+  "portfoliofy": {
+    "title": "Portfoliofy — Build Your Portfolio, Get Hired",
+    "siteName": "Portfoliofy",
+    "description": "Showcase platform and portfolio builder for creatives"
+  },
+  "ralcon-template": {
+    "title": "Ralcon — Digital Product E-Commerce Template",
+    "siteName": "Ralcon",
+    "description": "Sleek dark-mode digital storefront Framer template"
+  },
+  "abtest-design": {
+    "title": "AB Test Design — Conversion Rate Tests",
+    "siteName": "AB Test Design",
+    "description": "Real-world AB testing results and UI conversion case studies"
   }
 }

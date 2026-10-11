@@ -18,7 +18,7 @@ export function HeroSection({ content = HERO_CONTENT }: HeroSectionProps) {
         <div className="space-y-4">
           <p className="small-text font-normal">{content.greeting}</p>
 
-          <p className="body-text leading-relaxed">
+          <h1 className="body-text leading-relaxed font-normal">
             {content.prefix}
             <span className="inline-flex items-baseline font-medium text-foreground group cursor-default">
               <span className="mr-0.5 text-xs">{content.brandEmoji}</span>
@@ -27,7 +27,7 @@ export function HeroSection({ content = HERO_CONTENT }: HeroSectionProps) {
               </span>
             </span>
             , {content.description}
-          </p>
+          </h1>
 
           <div className="flex flex-wrap items-center gap-2 pt-2 small-text">
             <span>
@@ -39,7 +39,7 @@ export function HeroSection({ content = HERO_CONTENT }: HeroSectionProps) {
             <button
               type="button"
               onClick={() => setDrawerOpen(true)}
-              className="inline-flex items-center justify-center rounded-md border border-border bg-secondary px-2.5 py-1 text-xs font-medium text-secondary-foreground shadow-xs hover:bg-accent hover:text-accent-foreground active:scale-95 cursor-pointer"
+              className="inline-flex items-center justify-center rounded-md border border-border bg-secondary px-2.5 py-1 text-xs font-medium text-secondary-foreground shadow-xs hover:bg-accent hover:text-accent-foreground active:scale-95 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer"
             >
               {content.submitButtonText}
             </button>

@@ -18,6 +18,12 @@ export const metadata: Metadata = {
   keywords: SITE_CONFIG.keywords,
   authors: [{ name: SITE_CONFIG.author }],
   creator: SITE_CONFIG.author,
+  publisher: SITE_CONFIG.author,
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -34,6 +40,13 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 

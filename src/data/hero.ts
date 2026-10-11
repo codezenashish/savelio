@@ -1,3 +1,5 @@
+import { URL_ENTRIES } from "./url-library";
+
 export interface SubmissionDrawerData {
   title: string;
   description: string;
@@ -22,7 +24,7 @@ export const HERO_CONTENT: HeroData = {
   prefix: "This is ",
   description:
     "a hand-picked collection of the best libraries, UI components, and dev tools on the web.",
-  count: 120,
+  count: URL_ENTRIES.length,
   countLabel: "tools and counting. Know a useful library that belongs here?",
   submitButtonText: "submit it",
   submissionDrawer: {

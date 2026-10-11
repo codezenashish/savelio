@@ -18,6 +18,13 @@ export const componentLibraries: DirectoryUrl[] = [
   {"id": "codrops", "href": "https://tympanus.net/codrops/"},
   {"id": "uizard", "href": "https://app.uizard.io/prototypes"},
   {"id": "originkit", "href": "https://www.originkit.dev/"},
+  {"id": "shadcnblocks", "href": "https://www.shadcnblocks.com/theme/vercel"},
+  {"id": "kugiri", "href": "https://edoardolunardi.github.io/kugiri/"},
+  {"id": "vaul", "href": "https://vaul.emilkowal.ski/"},
+  {"id": "componentry", "href": "https://componentry.dev/"},
+  {"id": "kobra-systems", "href": "https://kobra.systems/components/checkbox"},
+  {"id": "aceternity-ui", "href": "https://ui.aceternity.com/"},
+  {"id": "uiarc", "href": "https://uiarc.dev/"},
 ];
 
 export const utilityLibraries: DirectoryUrl[] = [
@@ -44,6 +51,17 @@ export const utilityLibraries: DirectoryUrl[] = [
   {"id": "stackoverflow", "href": "https://stackoverflow.com/"},
   {"id": "peerlist-scroll", "href": "https://peerlist.io/scroll"},
   {"id": "instant-domain-search", "href": "https://instantdomainsearch.com/?q=vyrn."},
+  {"id": "whatsapp", "href": "https://web.whatsapp.com/"},
+  {"id": "gmail", "href": "https://mail.google.com/"},
+  {"id": "google-docs", "href": "https://docs.google.com/document/u/0/"},
+  {"id": "google-sheets", "href": "https://docs.google.com/spreadsheets/u/0/"},
+  {"id": "google-contacts", "href": "https://contacts.google.com/"},
+  {"id": "google-photos", "href": "https://photos.google.com/"},
+  {"id": "davidhaz-blog", "href": "https://www.davidhaz.blog/"},
+  {"id": "tweakcn", "href": "https://tweakcn.com/editor/theme?p=marketing"},
+  {"id": "interview-cake", "href": "https://www.interviewcake.com/javascript-interview-questions"},
+  {"id": "youtype", "href": "https://youtype.app/courses"},
+  {"id": "github-readme-grid", "href": "https://gfg.ryanaque.com/?username=codezenashish&cols=8&width=640&limit=40&gap=8&shape=square"},
 ];
 
 export const aiTools: DirectoryUrl[] = [
@@ -61,6 +79,8 @@ export const aiTools: DirectoryUrl[] = [
   {"id": "perplexity", "href": "https://www.perplexity.ai/"},
   {"id": "github-copilot", "href": "https://github.com/copilot"},
   {"id": "google-gemini", "href": "https://gemini.google.com/app"},
+  {"id": "duck-ai", "href": "https://duck.ai/"},
+  {"id": "design-md", "href": "https://designmd.me/"},
 ];
 
 export const developmentTools: DirectoryUrl[] = [
@@ -71,6 +91,7 @@ export const developmentTools: DirectoryUrl[] = [
   {"id": "v0-dev", "href": "https://v0.dev/"},
   {"id": "lovable", "href": "https://lovable.dev/"},
   {"id": "vite", "href": "https://vite.dev/"},
+  {"id": "framer", "href": "https://framer.com/"},
 ];
 
 export const uiLibraries: DirectoryUrl[] = [
@@ -79,11 +100,19 @@ export const uiLibraries: DirectoryUrl[] = [
   {"id": "chartjs", "href": "https://www.chartjs.org/"},
   {"id": "svelte", "href": "https://svelte.dev/"},
   {"id": "jquery", "href": "https://jquery.com/"},
+  {"id": "base-ui", "href": "https://base-ui.com/react/handbook/customization"},
+  {"id": "park-ui", "href": "https://park-ui.com/"},
 ];
 
 export const animationLibraries: DirectoryUrl[] = [
   {"id": "motion", "href": "https://motion.dev/"},
   {"id": "gsap", "href": "https://gsap.com/"},
+  {"id": "thinking-orbs", "href": "https://orbs.jakubantalik.com/"},
+  {"id": "morphicons", "href": "https://www.morphicons.com/"},
+  {"id": "morphrig", "href": "https://morphrig.dev/docs/what-morphing-is"},
+  {"id": "motion-primitives", "href": "https://motion-primitives.com/docs/border-trail"},
+  {"id": "amicro", "href": "https://amicro.vercel.app/"},
+  {"id": "animations-dev", "href": "https://animations.dev/"},
 ];
 
 export const componentLibrarySites: DirectoryUrl[] = [
@@ -102,6 +131,9 @@ export const backendServices: DirectoryUrl[] = [
   {"id": "netlify-app", "href": "https://app.netlify.com/teams/codezenashish/projects"},
   {"id": "mongodb-cloud", "href": "https://cloud.mongodb.com/v2/69a4700b13387665800599ae#/explorer/69a4706b361756b865fae654/learning-node/users/find"},
   {"id": "posthog", "href": "https://posthog.com/"},
+  {"id": "resend", "href": "https://resend.com/emails"},
+  {"id": "podman", "href": "https://podman.io/"},
+  {"id": "hoppscotch", "href": "https://hoppscotch.io/"},
 ];
 
 export const visualLibraries: DirectoryUrl[] = [
@@ -117,6 +149,8 @@ export const visualLibraries: DirectoryUrl[] = [
   {"id": "wallpaperscraft", "href": "https://wallpaperscraft.com/"},
   {"id": "unsplash", "href": "https://unsplash.com/"},
   {"id": "pexels", "href": "https://www.pexels.com/"},
+  {"id": "metalforge", "href": "https://metalforge.xyz/?"},
+  {"id": "fragcoord", "href": "https://fragcoord.xyz/explore?view=shaders"},
 ];
 
 export const iconLibraries: DirectoryUrl[] = [
@@ -124,10 +158,12 @@ export const iconLibraries: DirectoryUrl[] = [
   {"id": "font-awesome", "href": "https://fontawesome.com/icons"},
   {"id": "flaticon", "href": "https://www.flaticon.com/free-icons/favicon"},
   {"id": "avatune", "href": "https://www.avatune.dev/"},
+  {"id": "svgl", "href": "https://svgl.app/directory/design"},
 ];
 
 export const fontLibraries: DirectoryUrl[] = [
   {"id": "google-fonts", "href": "https://fonts.google.com/"},
+  {"id": "calligraph", "href": "https://calligraph.raphaelsalaja.com/compare"},
 ];
 
 export const inspirationLibraries: DirectoryUrl[] = [
@@ -137,11 +173,27 @@ export const inspirationLibraries: DirectoryUrl[] = [
   {"id": "ozone-pro", "href": "https://ozone.pro/"},
   {"id": "infinity-castle", "href": "https://thre4dripper.github.io/Infinity-Castle-ThreeJs/?seed=99&q=auto&motion=100&pace=100&weather=auto&mist=100&density=100&music=0&sfx=0&light=100&inv=0&ghost=0"},
   {"id": "deluxe-saloon", "href": "https://deluxesalon.in/"},
+  {"id": "idem-studio", "href": "https://www.idemstudio.in/"},
+  {"id": "404s-design", "href": "https://www.404s.design/"},
+  {"id": "footer-design", "href": "https://www.footer.design/"},
+  {"id": "developer-portfolios", "href": "https://6e87v.hatchboxapp.com/"},
+  {"id": "zero-university", "href": "https://why.zero.university/"},
+  {"id": "santioni-spirits", "href": "https://santionispirits.com/"},
+  {"id": "kage-monar", "href": "https://www.monarcheats.lol/kage"},
+  {"id": "perfolios", "href": "https://perfolios.shwn.design/"},
+  {"id": "portfoliofy", "href": "https://portfoliofy.io/"},
+  {"id": "ralcon-template", "href": "https://widyabayu.com/templates/ralcon"},
+  {"id": "abtest-design", "href": "https://abtest.design/tests/benefits-driven-vs-emotional-appeal-messaging"},
 ];
 
 export const designEngineerPortfolios: DirectoryUrl[] = [
   {"id": "adina-hawaldar", "href": "https://www.adinaa.me/"},
   {"id": "rbp-portfolio", "href": "https://github.com/DavidHDev/rbp-portfolio"},
+  {"id": "rinkit-adhana", "href": "https://rinkitadhana.com/"},
+  {"id": "jdhruv-dev", "href": "https://jdhruv.dev/"},
+  {"id": "samworks", "href": "https://samworks.vercel.app/"},
+  {"id": "emil-kowalski", "href": "https://emilkowal.ski/"},
+  {"id": "paco-coursey", "href": "https://paco.me/"},
 ];
 
 export const URL_LIBRARY: Record<Exclude<CategoryId, "all">, DirectoryUrl[]> = {

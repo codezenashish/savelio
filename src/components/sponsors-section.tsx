@@ -88,7 +88,7 @@ function SponsorRowItem({ sponsor }: { sponsor: Sponsor }) {
       href={sponsor.href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group inline-flex items-center gap-2.5 small-text hover:text-foreground"
+      className="group inline-flex items-center gap-2.5 small-text hover:text-foreground rounded-md px-1 -mx-1 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
     >
       <SponsorFavicon href={sponsor.href} name={sponsor.name} />
 
@@ -110,7 +110,7 @@ function SponsorRowItem({ sponsor }: { sponsor: Sponsor }) {
         ]}
       />
 
-      <ArrowUpRight className="size-3.5 text-muted-foreground group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
+      <ArrowUpRight className="size-3.5 text-muted-foreground group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground transition-transform" />
     </a>
   );
 }
@@ -128,7 +128,7 @@ export function SponsorsSection({
           <button
             type="button"
             onClick={onBecomeSponsor}
-            className="inline-flex items-center justify-center rounded-md border border-border bg-muted/60 px-2 py-0.5 text-[11px] font-medium text-muted-foreground hover:bg-muted hover:text-foreground active:scale-95 cursor-pointer"
+            className="inline-flex items-center justify-center rounded-md border border-border bg-muted/60 px-2 py-0.5 text-[11px] font-medium text-muted-foreground hover:bg-muted hover:text-foreground active:scale-95 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer"
           >
             {sectionData.becomeSponsorText}
           </button>
