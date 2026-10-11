@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "metadata:cache": "node scripts/generate-metadata-cache.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",

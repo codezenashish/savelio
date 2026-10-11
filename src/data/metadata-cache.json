@@ -1,0 +1,477 @@
+{
+  "uisfx": {
+    "title": "UI SFX — Tiny sound effects for web & apps",
+    "siteName": "UI SFX",
+    "description": "Free UI sound effects for interfaces"
+  },
+  "css-buttons": {
+    "title": "100+ Free CSS Buttons",
+    "siteName": "CSS Buttons",
+    "description": "Collection of free CSS buttons with animations"
+  },
+  "uiverse": {
+    "title": "Open-source UI elements made with CSS & Tailwind",
+    "siteName": "Uiverse",
+    "description": "Community-made interactive UI components"
+  },
+  "design-spells": {
+    "title": "Design Spells — Micro-interactions & subtle details",
+    "siteName": "Design Spells",
+    "description": "Curated design details and micro-animations"
+  },
+  "codrops": {
+    "title": "Creative Web Design & Development Articles",
+    "siteName": "Codrops",
+    "description": "Useful resources and inspiration for web professionals"
+  },
+  "uizard": {
+    "title": "uizard",
+    "siteName": "App",
+    "description": "Design digital products, mobile apps, website mockups, and wireframes in minutes with Uizard, the world"
+  },
+  "originkit": {
+    "title": "Originkit — Free Animated component library for modern websites",
+    "siteName": "Originkit",
+    "description": "The largest free animated component library for building modern websites. Copy code, use in Framer, or connect through MCP."
+  },
+  "unavatar": {
+    "title": "unavatar.io: The universal avatars API for username, email, and domain — plus logos, icons & artwork",
+    "siteName": "unavatar.io",
+    "description": "Universal avatars API: resolve user avatars by username, email, or domain from GitHub, Gravatar, X, Google, Instagram, and 75+ providers. The same endpoint also returns logos, favicons, app store icons, and cover art — with dashboard analytics for usage, provider mix, and billing."
+  },
+  "mem-ai": {
+    "title": "Mem",
+    "siteName": "V2",
+    "description": "Let AI organize your team"
+  },
+  "notion": {
+    "title": "The AI workspace that works for you. | Notion",
+    "siteName": "Notion",
+    "description": "Build Custom Agents, search across all your apps, and automate busywork. The AI workspace where teams get more done, faster."
+  },
+  "obsidian": {
+    "title": "Obsidian - Sharpen your thinking",
+    "siteName": "Obsidian",
+    "description": "The free and flexible app for your private thoughts."
+  },
+  "tldraw": {
+    "title": "tldraw",
+    "siteName": "tldraw",
+    "description": "A free and instant virtual whiteboarding with online collaboration. No signup required. Works on all devices: mobile, tablets, and desktop."
+  },
+  "excalidraw": {
+    "title": "Excalidraw — Collaborative whiteboarding made easy",
+    "siteName": "Excalidraw",
+    "description": "Excalidraw is a virtual collaborative whiteboard tool that lets you easily sketch diagrams that have a hand-drawn feel to them."
+  },
+  "readme-so": {
+    "title": "The easiest way to create a README",
+    "siteName": "Readme.so",
+    "description": "Visual Markdown editor for READMEs"
+  },
+  "keybr": {
+    "title": "keybr.com - Typing lessons",
+    "siteName": "keybr.com - Typing lessons",
+    "description": "Typing practice lessons to improve your speed and accuracy."
+  },
+  "monkeytype": {
+    "title": "Monkeytype | A minimalistic, customizable typing test",
+    "siteName": "Monkeytype",
+    "description": "The most customizable typing test website with a minimal design and a ton of features. Test yourself in various modes, track your progress and improve your speed."
+  },
+  "frontend-mentor": {
+    "title": "Front-end coding challenges using a real-life workflow | Frontend Mentor",
+    "siteName": "Front-end coding challenges using a real-life workflow | Frontend Mentor",
+    "description": "Home"
+  },
+  "codedex": {
+    "title": "Codédex | Start Your Coding Adventure ⋆˙⟡",
+    "siteName": "Codédex",
+    "description": "Codédex is a new way to learn to code for kids and adults alike. Journey through the fantasy land of Python, HTML, CSS, or JavaScript, earn experience points (XP) to unlock new regions, and collect all the badges at your own pace. Start your adventure today."
+  },
+  "medium": {
+    "title": "Where good ideas find you",
+    "siteName": "Medium",
+    "description": "Read and share stories and ideas"
+  },
+  "mangapark": {
+    "title": "Read Free Manga Online",
+    "siteName": "MangaPark",
+    "description": "Free online manga reader"
+  },
+  "tailwind-design-system-blog": {
+    "title": "Building a responsive design system with Tailwind CSS | David H.",
+    "siteName": "Davidhaz",
+    "description": null
+  },
+  "linkedin": {
+    "title": "LinkedIn Login, Sign in | LinkedIn",
+    "siteName": "LinkedIn",
+    "description": "Login to LinkedIn to keep in touch with people you know, share ideas, and build your career."
+  },
+  "x-twitter": {
+    "title": "X - The Everything App (@i) on X",
+    "siteName": "X",
+    "description": "Get breaking news, politics, trending music, world events, sports scores, and the latest global news stories as they unfold - all with less data."
+  },
+  "youtube": {
+    "title": "YouTube",
+    "siteName": "Youtube",
+    "description": "Enjoy the videos and music that you love, upload original content and share it all with friends, family and the world on YouTube."
+  },
+  "reddit": {
+    "title": "Reddit",
+    "siteName": "Reddit",
+    "description": null
+  },
+  "instagram": {
+    "title": "Instagram",
+    "siteName": "Instagram",
+    "description": null
+  },
+  "github-profile": {
+    "title": "codezenashish - Overview",
+    "siteName": "GitHub",
+    "description": "Full-Stack Web Developer | MERN & Next.js. codezenashish has 21 repositories available. Follow their code on GitHub."
+  },
+  "stackoverflow": {
+    "title": "Where Developers Learn, Share, & Build Careers",
+    "siteName": "Stack Overflow",
+    "description": "Developer community questions and answers"
+  },
+  "peerlist-scroll": {
+    "title": "Peerlist Scroll — Tech news & discussions",
+    "siteName": "Peerlist",
+    "description": "Professional network for tech folks"
+  },
+  "instant-domain-search": {
+    "title": "Domain Name Search: Check Domain Availability Instantly",
+    "siteName": "Instant Domain Search",
+    "description": "Domain name search with results as you type. Check domain availability across 800+ extensions with our domain name checker, and buy your domain."
+  },
+  "leonardo-ai": {
+    "title": "Create art & graphics with AI",
+    "siteName": "Leonardo.Ai",
+    "description": "Generative AI platform for digital art"
+  },
+  "imagineart-image": {
+    "title": "ImagineArt - AI Creative Suite | Images, Videos, Voice",
+    "siteName": "Imagine.Art",
+    "description": "ImagineArt is the best AI creative suite that generates images, videos, shorts, and voice from text prompt. The platform includes advanced editing tools, BG remover, upscaler, and custom models. With 30M+ users and 100M+ downloads, it's available on web and mobile. No experience needed!"
+  },
+  "ideogram": {
+    "title": "AI Image Generator & Typography",
+    "siteName": "Ideogram",
+    "description": "Generative AI images with accurate text rendering"
+  },
+  "suno": {
+    "title": "Suno | AI Music Generator",
+    "siteName": "Suno",
+    "description": "Create stunning original music for free in seconds using our AI generator. Make your own masterpieces, share with friends, and discover music from artists worldwide."
+  },
+  "pictory-ai": {
+    "title": "Video Creation Made Easy",
+    "siteName": "Pictory",
+    "description": "AI video generator from text and scripts"
+  },
+  "captions-ai": {
+    "title": "Get Started with Captions: Create and Edit Videos with AI",
+    "siteName": "Captions",
+    "description": "Publish in minutes with Captions"
+  },
+  "deepseek": {
+    "title": "DeepSeek — Into the Unknown",
+    "siteName": "DeepSeek",
+    "description": "Advanced reasoning and open-source AI models"
+  },
+  "grok": {
+    "title": "Grok",
+    "siteName": "Grok",
+    "description": "Grok is an AI assistant built by SpaceXSI. Chat, create images, write code, and get real-time answers from the web and X."
+  },
+  "chatgpt": {
+    "title": "ChatGPT by OpenAI",
+    "siteName": "ChatGPT",
+    "description": "Get answers, find inspiration, and be more productive"
+  },
+  "microsoft-copilot": {
+    "title": "Microsoft Copilot",
+    "siteName": "Microsoft Copilot",
+    "description": "Microsoft Copilot is AI built to help you get things done. Create, brainstorm, learn, and solve problems with AI chat that works across your day."
+  },
+  "claude": {
+    "title": "Claude by Anthropic",
+    "siteName": "Claude",
+    "description": "AI assistant for work, code, and writing"
+  },
+  "perplexity": {
+    "title": "Where knowledge begins",
+    "siteName": "Perplexity",
+    "description": "AI conversational search engine"
+  },
+  "github-copilot": {
+    "title": "GitHub Copilot",
+    "siteName": "GitHub",
+    "description": "GitHub is where people build software. More than 225 million people use GitHub to discover, fork, and contribute to over 800 million projects."
+  },
+  "google-gemini": {
+    "title": "‎Google Gemini",
+    "siteName": "Gemini",
+    "description": "Meet Gemini, Google’s AI assistant. Get help with writing, planning, brainstorming, and more. Experience the power of generative AI."
+  },
+  "replit": {
+    "title": "AI App and Website Builder",
+    "siteName": "replit",
+    "description": "Describe what you want. Replit builds it. Get a working app or website in minutes. No coding required."
+  },
+  "vscode-web": {
+    "title": "Visual Studio Code for the Web",
+    "siteName": "Vscode",
+    "description": "Build with Visual Studio Code, anywhere, anytime, entirely in your browser."
+  },
+  "stackblitz": {
+    "title": "StackBlitz | Instant Dev Environments | Click. Code. Done.",
+    "siteName": "Stackblitz",
+    "description": "StackBlitz is the collaborative browser-based IDE for web developers. StackBlitz eliminates time-consuming local configuration and lets developers spend more time building."
+  },
+  "bolt-new": {
+    "title": "Bolt AI builder: Websites, apps & prototypes",
+    "siteName": "bolt.new",
+    "description": "Build and scale high-performing websites & apps using your words. Join millions and start building today."
+  },
+  "v0-dev": {
+    "title": "v0 by Vercel - Build Full-Stack Web Apps with AI",
+    "siteName": "V0",
+    "description": "Your collaborative AI assistant to design, iterate, and scale full-stack applications for the web."
+  },
+  "lovable": {
+    "title": "Lovable — Build software with AI",
+    "siteName": "Lovable",
+    "description": "Full-stack AI app generation platform"
+  },
+  "vite": {
+    "title": "Next Generation Frontend Tooling",
+    "siteName": "Vite",
+    "description": "Fast frontend build tool and dev server"
+  },
+  "react": {
+    "title": "React",
+    "siteName": "react.dev",
+    "description": "React is the library for web and native user interfaces. Build user interfaces out of individual pieces called components written in JavaScript. React is designed to let you seamlessly combine components written by independent people, teams, and organizations."
+  },
+  "tailwindcss": {
+    "title": "Tailwind CSS - Rapidly build modern websites without ever leaving your HTML.",
+    "siteName": "Tailwindcss",
+    "description": "Tailwind CSS is a utility-first CSS framework for rapidly building modern websites without ever leaving your HTML."
+  },
+  "chartjs": {
+    "title": "Chart.js",
+    "siteName": "Chartjs",
+    "description": "Simple yet flexible JavaScript charting library for the modern web"
+  },
+  "svelte": {
+    "title": "Cybernetically enhanced web apps",
+    "siteName": "Svelte",
+    "description": "Reactive web framework"
+  },
+  "jquery": {
+    "title": "jQuery",
+    "siteName": "Jquery",
+    "description": "jQuery: The Write Less, Do More, JavaScript Library"
+  },
+  "motion": {
+    "title": "Motion (prev Framer Motion): JavaScript & React animation library",
+    "siteName": "Motion",
+    "description": "Motion (prev Framer Motion) is a fast, production-grade animation library for React, JavaScript and Vue. Build smooth UI animations at a tiny footprint."
+  },
+  "gsap": {
+    "title": "One moment, please...",
+    "siteName": "Gsap",
+    "description": null
+  },
+  "react-bits": {
+    "title": "React Bits — Free Animated React Components",
+    "siteName": "React Bits",
+    "description": "Free, open source React components for animated text, backgrounds, interactive cards and micro interactions. Explore live demos and copy the source."
+  },
+  "nodejs": {
+    "title": "Node.js — Run JavaScript Everywhere",
+    "siteName": "Nodejs",
+    "description": "Node.js® is a free, open-source, cross-platform JavaScript runtime environment that lets developers create servers, web apps, command line tools and scripts."
+  },
+  "expressjs": {
+    "title": "Express.js · Node.js web application framework",
+    "siteName": "Express.js",
+    "description": "Fast, unopinionated, minimalist web framework for Node.js"
+  },
+  "mongodb": {
+    "title": "MongoDB | The Intelligent Data Platform for the AI Era",
+    "siteName": "MongoDB",
+    "description": "MongoDB is the intelligent data platform for the AI era. Get your ideas to market faster with flexible, real-time data that scales across any cloud."
+  },
+  "postgresql": {
+    "title": "PostgreSQL",
+    "siteName": "PostgreSQL",
+    "description": "The official site for PostgreSQL, the world"
+  },
+  "supabase": {
+    "title": "Supabase",
+    "siteName": "Supabase",
+    "description": null
+  },
+  "firebase": {
+    "title": "Firebase | Google's Mobile and Web App Development Platform",
+    "siteName": "Firebase",
+    "description": "Discover Firebase, Google’s mobile and web app development platform that helps developers build apps and games that users will love."
+  },
+  "vercel": {
+    "title": "Agentic Infrastructure - Vercel",
+    "siteName": "Vercel",
+    "description": "The autonomous stack for every app and agent."
+  },
+  "netlify": {
+    "title": "Push your ideas to the web | Netlify",
+    "siteName": "Netlify",
+    "description": "Create with AI or code, deploy instantly on production infrastructure. One platform to build and ship."
+  },
+  "netlify-app": {
+    "title": "Netlify Team Dashboard",
+    "siteName": "Netlify",
+    "description": "Manage projects and deployments on Netlify"
+  },
+  "mongodb-cloud": {
+    "title": "MongoDB Atlas Cloud Database",
+    "siteName": "MongoDB Atlas",
+    "description": "Multi-cloud database service"
+  },
+  "posthog": {
+    "title": "PostHog - your product’s context layer",
+    "siteName": "Posthog",
+    "description": "PostHog automatically diagnoses problems, fixes bugs, and generates pull requests – all without you having to prompt it."
+  },
+  "dribbble": {
+    "title": "Discover the World’s Top Designers & Creative Pros",
+    "siteName": "Dribbble",
+    "description": "Design portfolio and creative community"
+  },
+  "behance": {
+    "title": "Best of Behance :: Creative Portfolios",
+    "siteName": "Behance",
+    "description": "Showcase and discover creative work"
+  },
+  "mobbin": {
+    "title": "Mobbin — UI & UX design inspiration for mobile & web apps",
+    "siteName": "Mobbin",
+    "description": "Save hours of UI & UX research with our library of 600,000+ fully searchable mobile & web app screenshots."
+  },
+  "pinterest": {
+    "title": "Pinterest",
+    "siteName": "Pinterest",
+    "description": "Discover recipes, home ideas, style inspiration and other ideas to try."
+  },
+  "godly": {
+    "title": "Astronomically good web design inspiration",
+    "siteName": "Godly",
+    "description": "Curated modern web design inspiration"
+  },
+  "muzli": {
+    "title": "Muzli - Design inspiration hub",
+    "siteName": "Muzli - Design inspiration hub",
+    "description": "Designers"
+  },
+  "awwwards": {
+    "title": "Website Awards — Best Web Design Trends",
+    "siteName": "Awwwards",
+    "description": "Recognizing the talent and effort of web designers"
+  },
+  "landing-love": {
+    "title": "OS & Platform Website Design: 18 Examples — landing.love",
+    "siteName": "landing.love",
+    "description": "18 operating system and platform websites recorded in full — how a whole computing environment gets sold on a single page."
+  },
+  "hdqwalls": {
+    "title": "HD Wallpapers for Desktop & Mobile",
+    "siteName": "HDQwalls",
+    "description": "Free high-definition wallpapers"
+  },
+  "wallpaperscraft": {
+    "title": "Desktop wallpapers hd, free desktop backgrounds",
+    "siteName": "Wallpaperscraft",
+    "description": "New and best 97,000 of desktop wallpapers, hd backgrounds for pc & mac, laptop, tablet, mobile phone"
+  },
+  "unsplash": {
+    "title": "Beautiful Free Images & Pictures",
+    "siteName": "Unsplash",
+    "description": "Free high-resolution photos"
+  },
+  "pexels": {
+    "title": "Free Stock Photos, Royalty Free Images & Videos",
+    "siteName": "Pexels",
+    "description": "High-quality stock photography"
+  },
+  "remix-icon": {
+    "title": "Open-source neutral-style icon system",
+    "siteName": "Remix Icon",
+    "description": "Delightful icons crafted for designers and developers"
+  },
+  "font-awesome": {
+    "title": "Find Icons with the Perfect Look & Feel | Font Awesome",
+    "siteName": "Font Awesome",
+    "description": "Used by millions of designers, devs, & content creators. Open-source. Always free. Check out the all-new icons, styles, and packs available in Font Awesome 7."
+  },
+  "flaticon": {
+    "title": "Free Icons and Stickers for your projects",
+    "siteName": "Flaticon",
+    "description": "Download vector icons and stickers"
+  },
+  "avatune": {
+    "title": "Avatune | Avatars that feel like people",
+    "siteName": "Avatune",
+    "description": "Typed, SSR-first avatars for seven web frameworks and a native Swift package, with a growing theme library and no runtime dependencies. Build avatars manually or draft one from a photo."
+  },
+  "google-fonts": {
+    "title": "Browse Fonts - Google Fonts",
+    "siteName": "Google Fonts",
+    "description": "Making the web more beautiful, fast, and open through great typography"
+  },
+  "apple-airpods-pro": {
+    "title": "AirPods Pro 3",
+    "siteName": "Apple",
+    "description": "AirPods Pro 3 — The world’s best in-ear Active Noise Cancellation, heart rate sensing during workouts, and an improved hearing health experience."
+  },
+  "dogstudio": {
+    "title": "Dogstudio. Multidisciplinary Creative Studio.",
+    "siteName": "Dogstudio",
+    "description": "We are at the intersection of art, design and technology. Our goal is to deliver amazing experiences."
+  },
+  "active-theory": {
+    "title": "Active Theory · Creative Digital Experiences",
+    "siteName": "Activetheory",
+    "description": "Founded in 2012. We blend story, art & technology as an in-house team of passionate makers. Our industry-leading web toolset consistently delivers award-winning work through quality & performance."
+  },
+  "ozone-pro": {
+    "title": "Ozone — Cloud-based Video Editor",
+    "siteName": "Ozone",
+    "description": "Next-gen collaborative video editing"
+  },
+  "infinity-castle": {
+    "title": "Infinity Castle 無限城 — an endless procedural descent",
+    "siteName": "Infinity Castle 無限城",
+    "description": "An infinite, self-assembling Japanese castle in your browser. Fly as a crow through endless procedurally generated wards, lantern seas and shifting architecture — zero art assets, pure Three.js. Inspired by Demon Slayer"
+  },
+  "deluxe-saloon": {
+    "title": "Deluxe Saloon — an ambient street-corner radio",
+    "siteName": "Deluxesalon",
+    "description": "Pull up a chair at the Deluxe Saloon: a always-on radio playing old-school favourites over an illustrated Indian street corner, with a live count of everyone listening."
+  },
+  "adina-hawaldar": {
+    "title": "Adina Hawaldar | Web Developer & UI/UX Designer",
+    "siteName": "Adinaa",
+    "description": "Adina Hawaldar is a Web Developer & UI/UX Designer building high-performance, user-centered web experiences. Figma prototypes + clean front-end engineering."
+  },
+  "rbp-portfolio": {
+    "title": "GitHub - DavidHDev/rbp-portfolio: React Bits Pro - free personal portfolio template with smooth animations, project case studies, and a minimal aesthetic.",
+    "siteName": "GitHub",
+    "description": "React Bits Pro - free personal portfolio template with smooth animations, project case studies, and a minimal aesthetic. - DavidHDev/rbp-portfolio"
+  }
+}

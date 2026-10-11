@@ -13,8 +13,21 @@ import {
 
 export type { Sponsor, SponsorsSectionData };
 
+function getSponsorFaviconUrl(domain: string, attempt: number): string | null {
+  switch (attempt) {
+    case 0:
+      return `https://www.google.com/s2/favicons?domain=${encodeURIComponent(domain)}&sz=64`;
+    case 1:
+      return `https://icons.duckduckgo.com/ip3/${encodeURIComponent(domain)}.ico`;
+    case 2:
+      return `https://unavatar.io/${encodeURIComponent(domain)}`;
+    default:
+      return null;
+  }
+}
+
 function SponsorFavicon({ href, name }: { href: string; name: string }) {
-  const [hasError, setHasError] = React.useState(false);
+  const [attempt, setAttempt] = React.useState(0);
 
   const domain = React.useMemo(() => {
     try {
@@ -24,7 +37,9 @@ function SponsorFavicon({ href, name }: { href: string; name: string }) {
     }
   }, [href]);
 
-  if (hasError || !domain) {
+  const faviconUrl = domain ? getSponsorFaviconUrl(domain, attempt) : null;
+
+  if (!faviconUrl) {
     return (
       <div className="flex size-6 shrink-0 items-center justify-center text-muted-foreground group-hover:text-foreground">
         <svg
@@ -48,12 +63,13 @@ function SponsorFavicon({ href, name }: { href: string; name: string }) {
   return (
     <div className="flex size-6 shrink-0 items-center justify-center">
       <Image
-        src={`https://unavatar.io/${domain}`}
+        key={`${domain}-${attempt}`}
+        src={faviconUrl}
         alt={`${name} logo`}
         width={18}
         height={18}
         unoptimized
-        onError={() => setHasError(true)}
+        onError={() => setAttempt((prev) => prev + 1)}
         className="size-4.5 object-contain rounded-xs group-hover:opacity-100 opacity-90"
       />
     </div>
