@@ -1,4 +1,9 @@
 {
+  "cutnora": {
+    "title": "Cutnora — Online Video Editor",
+    "siteName": "Cutnora",
+    "description": "In-browser video editor with multi-track timeline & local export"
+  },
   "uisfx": {
     "title": "UI SFX — Tiny sound effects for web & apps",
     "siteName": "UI SFX",

@@ -25,11 +25,11 @@ export const HERO_CONTENT: HeroData = {
   description:
     "a hand-picked collection of the best libraries, UI components, and dev tools on the web.",
   count: URL_ENTRIES.length,
-  countLabel: "tools and counting. Know a useful library that belongs here?",
+  countLabel: "tools and counting.",
   submitButtonText: "submit it",
   submissionDrawer: {
-    title: "Community Submissions & Savelio Beta",
+    title: "Submit a Tool or Resource",
     description:
-      "Submit your portfolio or tool to be featured on Savelio, or learn more about our upcoming creator tools.",
+      "Suggest a library, UI component, developer utility, or creative showcase to be featured on Savelio.",
   },
 };

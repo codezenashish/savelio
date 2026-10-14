@@ -3,7 +3,6 @@
 import * as React from "react";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
-import { TextWaveHover } from "./sponsor-text-animation";
 import {
   SPONSORS,
   SPONSORS_SECTION_DATA,
@@ -41,7 +40,7 @@ function SponsorFavicon({ href, name }: { href: string; name: string }) {
 
   if (!faviconUrl) {
     return (
-      <div className="flex size-6 shrink-0 items-center justify-center text-muted-foreground group-hover:text-foreground">
+      <div className="flex size-5 shrink-0 items-center justify-center text-muted-foreground group-hover:text-foreground transition-colors">
         <svg
           viewBox="0 0 24 24"
           fill="none"
@@ -49,7 +48,7 @@ function SponsorFavicon({ href, name }: { href: string; name: string }) {
           strokeWidth="1.8"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="size-5"
+          className="size-4"
           aria-hidden="true"
         >
           <path d="M12 3c-1.5 0-3 1-3 2.5s1.2 2.5 3 2.5c2.5 0 4 2 4 4.5 0 2-1.5 3.5-3.5 3.5-2 0-3.5-1.5-3.5-3.5" />
@@ -61,7 +60,7 @@ function SponsorFavicon({ href, name }: { href: string; name: string }) {
   }
 
   return (
-    <div className="flex size-6 shrink-0 items-center justify-center">
+    <div className="flex size-5 shrink-0 items-center justify-center">
       <Image
         key={`${domain}-${attempt}`}
         src={faviconUrl}
@@ -70,7 +69,7 @@ function SponsorFavicon({ href, name }: { href: string; name: string }) {
         height={18}
         unoptimized
         onError={() => setAttempt((prev) => prev + 1)}
-        className="size-4.5 object-contain rounded-xs group-hover:opacity-100 opacity-90"
+        className="size-4 object-contain rounded-xs opacity-90 transition-opacity group-hover:opacity-100"
       />
     </div>
   );
@@ -88,29 +87,20 @@ function SponsorRowItem({ sponsor }: { sponsor: Sponsor }) {
       href={sponsor.href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group inline-flex items-center gap-2.5 small-text hover:text-foreground rounded-md px-1 -mx-1 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      className="group inline-flex items-center gap-2.5 rounded-lg py-1.5 px-2 -mx-2 text-xs sm:text-sm transition-colors duration-150 hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
     >
       <SponsorFavicon href={sponsor.href} name={sponsor.name} />
 
-      <TextWaveHover
-        segments={[
-          {
-            text: `${sponsor.name}:`,
-            className: "text-foreground font-medium",
-          },
-          {
-            text: " ",
-            className: "",
-          },
-          {
-            text: sponsor.tagline,
-            className:
-              "text-muted-foreground group-hover:text-foreground",
-          },
-        ]}
-      />
+      <div className="flex items-center gap-1.5 truncate">
+        <span className="font-semibold text-foreground tracking-tight">
+          {sponsor.name}:
+        </span>
+        <span className="text-muted-foreground transition-colors group-hover:text-foreground truncate">
+          {sponsor.tagline}
+        </span>
+      </div>
 
-      <ArrowUpRight className="size-3.5 text-muted-foreground group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground transition-transform" />
+      <ArrowUpRight className="size-3.5 shrink-0 text-muted-foreground/70 transition-colors group-hover:text-foreground" />
     </a>
   );
 }
@@ -118,24 +108,16 @@ function SponsorRowItem({ sponsor }: { sponsor: Sponsor }) {
 export function SponsorsSection({
   sponsors = SPONSORS,
   sectionData = SPONSORS_SECTION_DATA,
-  onBecomeSponsor,
 }: SponsorsSectionProps) {
   return (
-    <div className="pt-6 space-y-2.5">
-      <div className="flex items-center gap-2">
-        <span className="small-text font-medium">{sectionData.title}</span>
-        {onBecomeSponsor && (
-          <button
-            type="button"
-            onClick={onBecomeSponsor}
-            className="inline-flex items-center justify-center rounded-md border border-border bg-muted/60 px-2 py-0.5 text-[11px] font-medium text-muted-foreground hover:bg-muted hover:text-foreground active:scale-95 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer"
-          >
-            {sectionData.becomeSponsorText}
-          </button>
-        )}
+    <div className="pt-2 space-y-1.5">
+      <div className="flex items-center">
+        <span className="small-text font-semibold uppercase tracking-wider text-muted-foreground text-[11px]">
+          {sectionData.title}
+        </span>
       </div>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-1">
         {sponsors.map((sponsor) => (
           <SponsorRowItem key={sponsor.name} sponsor={sponsor} />
         ))}

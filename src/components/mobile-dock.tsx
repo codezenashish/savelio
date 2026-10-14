@@ -36,7 +36,7 @@ export function MobileDock({
           onClick={() => setOpen((o) => !o)}
           aria-expanded={open}
           aria-label={open ? "Close menu" : "Open menu"}
-          className="relative flex size-12 items-center justify-center rounded-full border border-border bg-card text-foreground shadow-lg transition-all hover:bg-muted active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="relative flex size-12 items-center justify-center rounded-full border border-border bg-card text-foreground shadow-lg transition-colors duration-150 hover:bg-muted active:bg-muted/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer"
         >
           <MorphIcon icon={open ? X : Menu} size={20} />
         </button>
@@ -45,11 +45,10 @@ export function MobileDock({
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 z-50 bg-background/80 backdrop-blur-xs" />
         <Drawer.Content
-          className="right-2 top-2 bottom-2 fixed z-50 outline-none w-[310px] flex"
-          // The gap between the edge of the screen and the drawer is 8px in this case.
+          className="right-2 top-2 bottom-2 fixed z-50 outline-none w-77.5 flex"
           style={{ "--initial-transform": "calc(100% + 8px)" } as React.CSSProperties}
         >
-          <div className="bg-card text-card-foreground border border-border h-full w-full grow p-5 flex flex-col rounded-[16px] shadow-2xl overflow-hidden">
+          <div className="bg-card text-card-foreground border border-border h-full w-full grow p-5 flex flex-col rounded-2xl shadow-2xl overflow-hidden">
             <div className="w-full pb-3 border-b border-border">
               <Drawer.Title className="font-semibold text-base text-foreground">
                 {dockData.title}
@@ -83,10 +82,10 @@ export function MobileDock({
                           }
                         }, 100);
                       }}
-                      className={`flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                      className={`flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-sm transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer ${
                         isSelected
                           ? "bg-foreground font-semibold text-background"
-                          : "text-muted-foreground hover:bg-muted hover:text-foreground active:scale-[0.99]"
+                          : "text-muted-foreground hover:bg-muted/60 hover:text-foreground active:bg-muted"
                       }`}
                     >
                       <span className="flex items-center gap-3">

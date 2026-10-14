@@ -1,15 +1,15 @@
 "use client";
 
 import * as React from "react";
-import { motion, useReducedMotion } from "motion/react";
 import { Globe } from "lucide-react";
 import { Sidebar } from "@/components/sidebar";
 import { HeroSection } from "@/components/hero-section";
 import { CATEGORIES, type CategoryId } from "@/data/sidebar";
-import { URL_LIBRARY, type DirectoryUrl } from "@/data/url-library";
+import { URL_LIBRARY, URL_ENTRIES, type DirectoryUrl } from "@/data/url-library";
 import { useCategory } from "@/components/category-provider";
 import staticMetadataCache from "@/data/metadata-cache.json";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from "@/components/ui";
+import { Footer } from "@/components/footer";
 
 interface WebsiteMetadata {
   title: string | null;
@@ -36,6 +36,9 @@ function loadMetadata(id: string): Promise<WebsiteMetadata> {
 }
 
 function getFaviconUrl(hostname: string, attempt: number): string | null {
+  if (hostname === "cutnora.app" && attempt === 0) {
+    return "/brands/cutnora.svg";
+  }
   switch (attempt) {
     case 0:
       // Google Favicon service: 0 rate limit, 64px crisp resolution, global CDN
@@ -52,7 +55,6 @@ function getFaviconUrl(hostname: string, attempt: number): string | null {
 }
 
 const UrlItem = React.memo(function UrlItem({ card }: { card: DirectoryUrl }) {
-  const shouldReduceMotion = useReducedMotion();
   const itemRef = React.useRef<HTMLAnchorElement>(null);
   const [shouldLoad, setShouldLoad] = React.useState(false);
   const cached = (staticMetadataCache as Record<string, WebsiteMetadata | undefined>)[card.id];
@@ -85,12 +87,15 @@ const UrlItem = React.memo(function UrlItem({ card }: { card: DirectoryUrl }) {
       const frame = window.requestAnimationFrame(() => setShouldLoad(true));
       return () => window.cancelAnimationFrame(frame);
     }
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setShouldLoad(true);
-        observer.disconnect();
-      }
-    }, { rootMargin: "160px" });
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "160px" },
+    );
     observer.observe(node);
     return () => observer.disconnect();
   }, [cached]);
@@ -101,13 +106,16 @@ const UrlItem = React.memo(function UrlItem({ card }: { card: DirectoryUrl }) {
     void loadMetadata(card.id).then((result) => {
       if (active) setMetadata(result);
     });
-    return () => { active = false; };
+    return () => {
+      active = false;
+    };
   }, [card.id, shouldLoad]);
 
   const displayName = metadata?.siteName || metadata?.title || fallbackName;
-  const detail = metadata?.title && metadata.title !== displayName
-    ? metadata.title
-    : metadata?.description;
+  const detail =
+    metadata?.title && metadata.title !== displayName
+      ? metadata.title
+      : metadata?.description;
   const faviconUrl = website
     ? getFaviconUrl(website.hostname, faviconAttempt)
     : null;
@@ -115,33 +123,23 @@ const UrlItem = React.memo(function UrlItem({ card }: { card: DirectoryUrl }) {
   const isPending = !metadata && shouldLoad;
 
   return (
-    <motion.a
+    <a
       ref={itemRef}
       href={card.href}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`Open ${displayName} in a new tab`}
       title={card.href}
-      initial={shouldReduceMotion ? false : { opacity: 0, y: 15 }}
-      whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      whileHover={shouldReduceMotion ? undefined : { y: -2 }}
-      whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
-      transition={{
-        opacity: { duration: 0.25, ease: "easeOut" },
-        y: { duration: 0.25, ease: "easeOut" },
-        scale: { type: "spring", stiffness: 400, damping: 25 },
-      }}
-      className="group flex min-w-0 items-center gap-2.5 py-2.5 px-2 -mx-2 rounded-lg hover:bg-muted/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      className="group flex min-w-0 items-center gap-3 py-2 px-2.5 -mx-2.5 rounded-lg text-sm transition-colors duration-150 hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
     >
-      <span className="flex size-4 shrink-0 items-center justify-center">
+      <span className="flex size-4.5 shrink-0 items-center justify-center">
         {faviconUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             key={`${card.id}-${faviconAttempt}`}
             src={faviconUrl}
             alt=""
-            className="size-4 object-contain"
+            className="size-4 object-contain rounded-xs"
             loading="lazy"
             onError={() => setFaviconAttempt((prev) => prev + 1)}
           />
@@ -150,17 +148,20 @@ const UrlItem = React.memo(function UrlItem({ card }: { card: DirectoryUrl }) {
         )}
       </span>
 
-      <span className="max-w-[45%] shrink-0 truncate text-sm font-medium text-foreground group-hover:underline">
+      <span className="max-w-[42%] shrink-0 truncate font-medium text-foreground transition-colors">
         {displayName}
       </span>
+
       {detail ? (
-        <span className="min-w-0 flex-1 truncate text-sm text-muted-foreground">{detail}</span>
+        <span className="min-w-0 flex-1 truncate text-xs sm:text-sm text-muted-foreground/85 transition-colors">
+          {detail}
+        </span>
       ) : isPending ? (
         <span className="min-w-0 flex-1 flex items-center">
           <Skeleton className="h-3.5 w-44 max-w-full opacity-60" />
         </span>
       ) : null}
-    </motion.a>
+    </a>
   );
 });
 
@@ -266,35 +267,21 @@ export function DirectoryView() {
         </div>
       </aside>
 
-      <main className="min-w-0 flex-1 space-y-12">
-        <HeroSection />
+      <main className="min-w-0 flex-1 space-y-10">
+        <HeroSection totalTools={URL_ENTRIES.length} />
 
-        <div className="space-y-12 pb-16">
+        <div className="space-y-6 pb-16">
           {CONTENT_CATEGORIES.map((category) => {
             const cards =
               URL_LIBRARY[category.id as Exclude<CategoryId, "all">] ?? [];
             if (cards.length === 0) return null;
 
-            const Icon = category.icon;
-
             return (
               <section
                 key={category.id}
                 id={`category-${category.id}`}
-                className="scroll-mt-20 md:scroll-mt-24 space-y-4 pt-4 first:pt-0"
+                className="scroll-mt-16 md:scroll-mt-20"
               >
-                <div className="space-y-1 border-b border-border/40 pb-2.5">
-                  <div className="flex items-center gap-2.5">
-                    <Icon className="size-4.5 text-muted-foreground shrink-0" />
-                    <h2 className="heading text-xl md:text-2xl font-bold tracking-tight">
-                      {category.title}
-                    </h2>
-                  </div>
-                  <p className="text-sm text-muted-foreground">
-                    {category.description}
-                  </p>
-                </div>
-
                 <div className="divide-y divide-border/20">
                   {cards.map((card) => (
                     <UrlItem key={card.id} card={card} />
@@ -304,6 +291,8 @@ export function DirectoryView() {
             );
           })}
         </div>
+
+        <Footer />
       </main>
     </div>
   );

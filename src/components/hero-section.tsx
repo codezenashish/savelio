@@ -1,63 +1,53 @@
 "use client";
 
 import * as React from "react";
-import { BetaInfoDrawer } from "./beta-info-drawer";
-import { SponsorsSection } from "./sponsors-section";
+import { FriendsSection } from "./friends-section";
 import { HERO_CONTENT, type HeroData } from "@/data/hero";
+import { URL_ENTRIES } from "@/data/url-library";
+import { Separator } from "@/components/ui";
 
 export interface HeroSectionProps {
   content?: HeroData;
+  totalTools?: number;
 }
 
-export function HeroSection({ content = HERO_CONTENT }: HeroSectionProps) {
-  const [drawerOpen, setDrawerOpen] = React.useState(false);
+export function HeroSection({ content = HERO_CONTENT, totalTools }: HeroSectionProps) {
+  const count = totalTools ?? URL_ENTRIES.length ?? content.count;
 
   return (
-    <>
-      <section className="w-full max-w-2xl">
-        <div className="space-y-4">
-          <p className="small-text font-normal">{content.greeting}</p>
+    <section className="w-full max-w-2xl">
+      <div className="space-y-4">
+        <p className="small-text font-normal text-muted-foreground/80">
+          {content.greeting}
+        </p>
 
-          <h1 className="body-text leading-relaxed font-normal">
-            {content.prefix}
-            <span className="inline-flex items-baseline font-medium text-foreground group cursor-default">
-              <span className="mr-0.5 text-xs">{content.brandEmoji}</span>
-              <span className="font-semibold tracking-tight text-foreground">
-                {content.brandName}
-              </span>
+        <h1 className="body-text leading-relaxed font-normal text-muted-foreground/90">
+          {content.prefix}
+          <span className="inline-flex items-baseline font-medium text-foreground group cursor-default">
+            <span className="mr-0.5 text-xs">{content.brandEmoji}</span>
+            <span className="font-semibold tracking-tight text-foreground">
+              {content.brandName}
             </span>
-            , {content.description}
-          </h1>
+          </span>
+          , {content.description}
+        </h1>
 
-          <div className="flex flex-wrap items-center gap-2 pt-2 small-text">
-            <span>
-              <strong className="font-semibold text-foreground">
-                {content.count}
-              </strong>{" "}
-              {content.countLabel}
-            </span>
-            <button
-              type="button"
-              onClick={() => setDrawerOpen(true)}
-              className="inline-flex items-center justify-center rounded-md border border-border bg-secondary px-2.5 py-1 text-xs font-medium text-secondary-foreground shadow-xs hover:bg-accent hover:text-accent-foreground active:scale-95 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer"
-            >
-              {content.submitButtonText}
-            </button>
-          </div>
-
-          <SponsorsSection onBecomeSponsor={() => setDrawerOpen(true)} />
-
-          <div className="border-b border-border pt-6" />
+        <div className="pt-1 small-text">
+          <span>
+            <strong className="font-semibold text-foreground">
+              {count}
+            </strong>{" "}
+            {content.countLabel}
+          </span>
         </div>
-      </section>
 
-      <BetaInfoDrawer
-        open={drawerOpen}
-        onOpenChange={setDrawerOpen}
-        title={content.submissionDrawer.title}
-        description={content.submissionDrawer.description}
-      />
-    </>
+        <div className="pt-2">
+          <FriendsSection />
+        </div>
+
+        <Separator className="mt-6" />
+      </div>
+    </section>
   );
 }
 

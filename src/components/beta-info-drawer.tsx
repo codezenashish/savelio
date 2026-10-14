@@ -2,47 +2,43 @@
 
 import * as React from "react";
 import { Drawer } from "vaul";
-import { X, Sparkles } from "lucide-react";
+import { X, Sparkles, ExternalLink, Mail, CheckCircle2 } from "lucide-react";
 import {
-  UPCOMING_FEATURES,
-  BETA_DRAWER_DATA,
-  type FeatureItem,
-  type BetaDrawerData,
+  SUBMISSION_DRAWER_DATA,
+  type SubmissionGuideline,
+  type SubmissionDrawerData,
 } from "@/data/features";
-
-export type { FeatureItem, BetaDrawerData };
+import { Button, Badge } from "@/components/ui";
 
 export interface BetaInfoDrawerProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  features?: FeatureItem[];
   title?: string;
   description?: string;
-  drawerData?: BetaDrawerData;
+  drawerData?: SubmissionDrawerData;
 }
 
 export function BetaInfoDrawer({
   open,
   onOpenChange,
-  features = UPCOMING_FEATURES,
-  drawerData = BETA_DRAWER_DATA,
-  title = drawerData.defaultTitle,
-  description = drawerData.defaultDescription,
+  drawerData = SUBMISSION_DRAWER_DATA,
+  title = drawerData.title,
+  description = drawerData.description,
 }: BetaInfoDrawerProps) {
   return (
     <Drawer.Root open={open} onOpenChange={onOpenChange}>
       <Drawer.Portal>
-        <Drawer.Overlay className="fixed inset-0 z-50 bg-background/80 backdrop-blur-xs transition-opacity duration-300" />
-        <Drawer.Content className="fixed inset-x-0 bottom-0 z-50 flex max-h-[85vh] flex-col rounded-t-3xl border-t border-border bg-card text-card-foreground shadow-2xl outline-none sm:max-w-2xl sm:mx-auto sm:border-x">
-          <div className="mx-auto mt-3 h-1.5 w-12 shrink-0 rounded-full bg-muted-foreground/30" />
+        <Drawer.Overlay className="fixed inset-0 z-50 bg-background/80 backdrop-blur-xs transition-opacity duration-200" />
+        <Drawer.Content className="fixed inset-x-0 bottom-0 z-50 flex max-h-[90vh] flex-col rounded-t-2xl border-t border-border bg-card text-card-foreground shadow-2xl outline-none sm:max-w-2xl sm:mx-auto sm:border-x">
+          <div className="mx-auto mt-3 h-1 w-10 shrink-0 rounded-full bg-muted-foreground/30" />
 
           <div className="flex items-start justify-between border-b border-border px-6 py-4">
             <div>
-              <div className="flex items-center gap-2 mb-1">
-                <span className="inline-flex items-center gap-1 rounded-full border border-primary/20 bg-primary/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-primary">
+              <div className="flex items-center gap-2 mb-1.5">
+                <Badge variant="brand" size="sm" className="font-semibold tracking-wider">
                   <Sparkles className="size-3" />
                   {drawerData.badge}
-                </span>
+                </Badge>
               </div>
               <Drawer.Title className="text-lg font-semibold tracking-tight text-foreground">
                 {title}
@@ -53,58 +49,89 @@ export function BetaInfoDrawer({
             </div>
 
             <Drawer.Close asChild>
-              <button
-                type="button"
+              <Button
+                variant="ghost"
+                size="icon-sm"
                 aria-label="Close modal"
-                className="rounded-full p-2 text-muted-foreground transition hover:bg-muted hover:text-foreground active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="rounded-full text-muted-foreground hover:text-foreground"
               >
                 <X className="size-4" />
-              </button>
+              </Button>
             </Drawer.Close>
           </div>
 
           <div className="flex-1 overflow-y-auto px-6 py-4 space-y-3 pb-[max(1.5rem,env(safe-area-inset-bottom,1.5rem))]">
-            {features.map((feature) => {
-              const Icon = feature.icon;
-              const isBeta = feature.status === "Beta";
-              const isSoon = feature.status === "Coming Soon";
+            <div className="space-y-2.5">
+              {drawerData.guidelines.map((guideline: SubmissionGuideline) => {
+                const Icon = guideline.icon;
 
-              return (
-                <div
-                  key={feature.id}
-                  className="flex items-start gap-3.5 rounded-xl border border-border bg-card/60 p-4 transition-all hover:border-border hover:bg-muted/50"
-                >
-                  <div className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-border bg-muted text-foreground">
-                    <Icon className="size-4.5" />
-                  </div>
-
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between gap-2">
-                      <h4 className="text-sm font-semibold text-foreground">
-                        {feature.title}
-                      </h4>
-                      <span
-                        className={`inline-flex items-center px-2 py-0.5 text-[10px] font-medium tracking-wide rounded-full border select-none ${
-                          isBeta
-                            ? "border-primary/30 bg-primary/10 text-primary"
-                            : isSoon
-                            ? "border-secondary-foreground/20 bg-secondary text-secondary-foreground"
-                            : "border-border bg-muted text-muted-foreground"
-                        }`}
-                      >
-                        {feature.status}
-                      </span>
+                return (
+                  <div
+                    key={guideline.id}
+                    className="flex items-start gap-3.5 rounded-xl border border-border/70 bg-card/60 p-3.5 transition-colors duration-150 hover:bg-muted/30"
+                  >
+                    <div className="flex size-8.5 shrink-0 items-center justify-center rounded-lg border border-border bg-muted/60 text-foreground">
+                      <Icon className="size-4" />
                     </div>
 
-                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                      {feature.description}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between gap-2">
+                        <h4 className="text-sm font-semibold text-foreground">
+                          {guideline.title}
+                        </h4>
+                        <Badge
+                          variant={guideline.tagVariant ?? "neutral"}
+                          size="sm"
+                        >
+                          {guideline.tag}
+                        </Badge>
+                      </div>
 
-            <div className="mt-4 rounded-xl border border-border bg-muted/40 p-3.5 text-center small-text">
+                      <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                        {guideline.description}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="rounded-xl border border-border bg-muted/30 p-4 space-y-3 mt-4">
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="size-4 text-emerald-500 shrink-0" />
+                <span className="text-xs font-medium text-foreground">
+                  {drawerData.templateText}
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+                <a
+                  href={drawerData.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full"
+                >
+                  <Button variant="default" className="w-full text-xs h-9 justify-center gap-2">
+                    <span>Submit on GitHub</span>
+                    <ExternalLink className="size-3.5" />
+                  </Button>
+                </a>
+
+                <a
+                  href={drawerData.emailUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full"
+                >
+                  <Button variant="outline" className="w-full text-xs h-9 justify-center gap-2">
+                    <Mail className="size-3.5" />
+                    <span>Submit via Email</span>
+                  </Button>
+                </a>
+              </div>
+            </div>
+
+            <div className="pt-2 text-center small-text text-muted-foreground/80">
               <p>{drawerData.footerNotice}</p>
             </div>
           </div>

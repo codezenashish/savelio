@@ -5,6 +5,7 @@ import { useTheme } from "next-themes";
 import { MorphIcon } from "morphicons/react";
 import { Moon, Sun } from "lucide";
 import { createUISFX } from "uisfx";
+import { Button } from "@/components/ui";
 
 const ui = createUISFX({
   pack: "zen",
@@ -23,7 +24,7 @@ export function ModeToggle() {
   if (!mounted) {
     return (
       <div
-        className="size-9 rounded-lg border border-transparent"
+        className="size-9 rounded-md border border-transparent"
         aria-hidden="true"
       />
     );
@@ -37,14 +38,15 @@ export function ModeToggle() {
   };
 
   return (
-    <button
-      type="button"
+    <Button
+      variant="outline"
+      size="icon"
       onClick={handleToggle}
       aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
-      className="flex size-9 items-center justify-center rounded-lg border border-border/60 bg-card/60 text-muted-foreground shadow-2xs transition hover:bg-muted hover:text-foreground active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer"
+      className="size-9 rounded-lg border-border/70 text-muted-foreground hover:text-foreground"
     >
-      <MorphIcon icon={isDark ? Sun : Moon} size={18} />
-    </button>
+      <MorphIcon icon={isDark ? Sun : Moon} size={17} />
+    </Button>
   );
 }
 
