@@ -3,8 +3,8 @@
 import * as React from "react";
 import { Drawer } from "vaul";
 import { MorphIcon } from "morphicons/react";
-import { Menu, X } from "lucide"; // data, not components
-import { Layers, Check } from "lucide-react";
+import { Menu } from "lucide"; // data, not components
+import { Layers, Check, X as XIcon } from "lucide-react";
 import {
   CATEGORIES,
   MOBILE_DOCK_DATA,
@@ -29,16 +29,18 @@ export function MobileDock({
     <Drawer.Root direction="right" open={open} onOpenChange={setOpen}>
       <aside
         aria-label="Mobile Navigation"
-        className="fixed bottom-5 left-1/2 z-40 -translate-x-1/2 md:hidden"
+        className={`fixed bottom-5 left-1/2 z-40 -translate-x-1/2 md:hidden transition-all duration-200 ${
+          open ? "opacity-0 pointer-events-none scale-90" : "opacity-100 scale-100"
+        }`}
       >
         <button
           type="button"
-          onClick={() => setOpen((o) => !o)}
+          onClick={() => setOpen(true)}
           aria-expanded={open}
-          aria-label={open ? "Close menu" : "Open menu"}
-          className="relative flex size-12 items-center justify-center rounded-full border border-border bg-card text-foreground shadow-lg transition-colors duration-150 hover:bg-muted active:bg-muted/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer"
+          aria-label="Open menu"
+          className="relative flex size-11 items-center justify-center text-foreground transition-transform duration-150 hover:opacity-80 active:scale-95 focus-visible:outline-none cursor-pointer"
         >
-          <MorphIcon icon={open ? X : Menu} size={20} />
+          <MorphIcon icon={Menu} size={22} />
         </button>
       </aside>
 
@@ -49,13 +51,24 @@ export function MobileDock({
           style={{ "--initial-transform": "calc(100% + 8px)" } as React.CSSProperties}
         >
           <div className="bg-card text-card-foreground border border-border h-full w-full grow p-5 flex flex-col rounded-2xl shadow-2xl overflow-hidden">
-            <div className="w-full pb-3 border-b border-border">
-              <Drawer.Title className="font-semibold text-base text-foreground">
-                {dockData.title}
-              </Drawer.Title>
-              <Drawer.Description className="text-xs text-muted-foreground mt-1">
-                {dockData.description}
-              </Drawer.Description>
+            <div className="w-full pb-3 border-b border-border flex items-center justify-between">
+              <div>
+                <Drawer.Title className="font-semibold text-base text-foreground">
+                  {dockData.title}
+                </Drawer.Title>
+                <Drawer.Description className="text-xs text-muted-foreground mt-0.5">
+                  {dockData.description}
+                </Drawer.Description>
+              </div>
+              <Drawer.Close asChild>
+                <button
+                  type="button"
+                  aria-label="Close menu"
+                  className="flex size-8 items-center justify-center rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/60 active:bg-muted transition-colors cursor-pointer"
+                >
+                  <XIcon className="size-4" />
+                </button>
+              </Drawer.Close>
             </div>
 
             <div className="flex-1 overflow-y-auto pt-3">
