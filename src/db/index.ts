@@ -2,25 +2,24 @@ import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 import * as schema from "./schema";
 
-const connectionString = process.env.DATABASE_URL;
+const postgresConnectionString = process.env.DATABASE_URL!;
 
-// Global singleton cache for Next.js Fast Refresh / HMR in development
-const globalForDb = globalThis as unknown as {
-  conn: postgres.Sql | undefined;
+// Cache the database connection in development to prevent connection exhaustion
+const globalDatabaseConnectionStore = globalThis as unknown as {
+  cachedConnection: postgres.Sql | undefined;
 };
 
-// Disable prepared statements (prepare: false) for compatibility with transaction poolers (Supavisor port 6543)
-const conn =
-  globalForDb.conn ??
-  postgres(connectionString || "postgresql://dummy:dummy@localhost:5432/postgres", {
-    prepare: false,
-    max: process.env.NODE_ENV === "production" ? 10 : 1,
+const postgresClientInstance =
+  globalDatabaseConnectionStore.cachedConnection ??
+  postgres(postgresConnectionString, {
+    prepare: false, // Recommended for Supabase connection pooler (port 6543)
+    idle_timeout: 20,
+    max_lifetime: 60 * 30,
+    connect_timeout: 10,
   });
 
 if (process.env.NODE_ENV !== "production") {
-  globalForDb.conn = conn;
+  globalDatabaseConnectionStore.cachedConnection = postgresClientInstance;
 }
 
-export const db = drizzle({ client: conn, schema });
-export { schema };
-export * from "./schema";
+export const db = drizzle(postgresClientInstance, { schema });

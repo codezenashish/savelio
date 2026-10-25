@@ -1,83 +1,55 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
+import { Geist, Geist_Mono } from "next/font/google";
+import { ThemeProvider } from "@/components/layout/theme-provider";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
-import { CategoryProvider } from "@/components/category-provider";
-import { MobileDock } from "@/components/mobile-dock";
-import { SITE_CONFIG } from "@/data/site";
+
+const mSaans = localFont({
+  src: "../../public/fonts/MSaansVF.woff2",
+  variable: "--font-m-saans",
+  display: "swap",
+  weight: "100 900",
+});
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_CONFIG.url),
-  alternates: {
-    canonical: "/",
-  },
-  title: {
-    default: SITE_CONFIG.title,
-    template: `%s | ${SITE_CONFIG.name}`,
-  },
-  description: SITE_CONFIG.description,
-  keywords: SITE_CONFIG.keywords,
-  authors: [{ name: SITE_CONFIG.author }],
-  creator: SITE_CONFIG.author,
-  publisher: SITE_CONFIG.author,
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: SITE_CONFIG.url,
-    title: SITE_CONFIG.title,
-    description: SITE_CONFIG.description,
-    siteName: SITE_CONFIG.name,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: SITE_CONFIG.title,
-    description: SITE_CONFIG.description,
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
+  title: "Kura — Curated Developer Tools & Inspiration",
+  description: "Curated collection of standout developer tools, libraries, and design inspiration.",
+  icons: {
+    icon: [
+      { url: "/logo-square.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: "/logo-square.svg",
   },
 };
 
-export function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" suppressHydrationWarning className="h-full antialiased">
-      <body className="min-h-full flex flex-col relative">
-        <ThemeProvider defaultTheme="system" attribute="class" enableSystem>
-          <CategoryProvider>
-            <div
-              aria-hidden="true"
-              className="pointer-events-none fixed inset-x-0 top-0 z-20 h-16 bg-gradient-to-b from-background via-background/80 to-transparent backdrop-blur-[2px] [mask-image:linear-gradient(to_bottom,black_20%,transparent)]"
-            />
-
-            {children}
-
-            <div
-              aria-hidden="true"
-              className="pointer-events-none fixed inset-x-0 bottom-0 z-20 h-16 bg-gradient-to-t from-background via-background/80 to-transparent backdrop-blur-[2px] [mask-image:linear-gradient(to_top,black_20%,transparent)]"
-            />
-
-            <MobileDock />
-          </CategoryProvider>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${mSaans.variable} ${geistSans.variable} ${geistMono.variable} h-full antialiased font-sans`}
+    >
+      <body className="min-h-full flex flex-col overflow-x-hidden w-full max-w-full">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
         </ThemeProvider>
       </body>
     </html>
   );
 }
-
-export default RootLayout;

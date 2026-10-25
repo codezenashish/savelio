@@ -1,55 +1,125 @@
-import type { Metadata } from "next";
-import { ModeToggle } from "@/components/theme-toggle";
-import { DirectoryView } from "@/components/directory-view";
-import { SITE_CONFIG, HOME_PAGE_METADATA } from "@/data/site";
+import SideBar, { MobileDock } from "@/components/layout/sidebar";
+import ModeToggle from "@/components/layout/theme-toggel";
+import { CuratedGallery } from "@/components/ui/curated-gallery";
+import { KuraLogo } from "@/components/ui/kura-logo";
+import { db } from "@/db";
+import { links } from "@/db/schema";
+import { desc, isNotNull, eq, and, or } from "drizzle-orm";
 
-export const metadata: Metadata = {
-  title: HOME_PAGE_METADATA.title,
-  description: HOME_PAGE_METADATA.description,
+export const instant = false;
+
+type CuratedLink = typeof links.$inferSelect;
+
+interface HomePageProps {
+  searchParams?: Promise<{ category?: string }>;
+}
+
+interface CategoryPresentationDetails {
+  title: string;
+  description: string;
+}
+
+const CATEGORY_METADATA_REGISTRY: Record<string, CategoryPresentationDetails> = {
+  all: {
+    title: "All Finds",
+    description: "Curated collection of developer tools, web inspirations, and design resources.",
+  },
+  inspiration: {
+    title: "Design Inspiration",
+    description: "Exceptional UI design, visual references, and creative web experiences.",
+  },
+  resources: {
+    title: "Resources",
+    description: "Curated landing pages, design systems, community references, and libraries.",
+  },
+  tools: {
+    title: "Developer Tools",
+    description: "Essential dev utilities, component kits, code editors, and workflow boosters.",
+  },
+  portfolio: {
+    title: "Portfolios",
+    description: "Standout personal portfolios, independent studios, and creative agencies.",
+  },
+  "landing-pages": {
+    title: "Landing Pages",
+    description: "Best-in-class conversion-optimized and high-impact landing pages.",
+  },
+  friends: {
+    title: "Built by Friends",
+    description: "Hand-crafted tools, open-source libraries, and projects built by friends.",
+  },
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebSite",
-      "@id": `${SITE_CONFIG.url}/#website`,
-      url: SITE_CONFIG.url,
-      name: SITE_CONFIG.name,
-      description: SITE_CONFIG.description,
-      inLanguage: "en-US",
-    },
-    {
-      "@type": "CollectionPage",
-      "@id": `${SITE_CONFIG.url}/#webpage`,
-      url: SITE_CONFIG.url,
-      name: HOME_PAGE_METADATA.title,
-      description: HOME_PAGE_METADATA.description,
-      isPartOf: {
-        "@id": `${SITE_CONFIG.url}/#website`,
-      },
-      about: {
-        "@type": "Thing",
-        name: "Developer Tools & UI Component Libraries",
-      },
-    },
-  ],
-};
+const HIGH_PRIORITY_PREVIEW_IMAGE_COUNT = 4;
 
-export function Home() {
+export default async function Home({ searchParams }: HomePageProps) {
+  const resolvedSearchParams = searchParams ? await searchParams : {};
+  const selectedCategoryFilter = resolvedSearchParams?.category || "all";
+
+  let curatedLinks: CuratedLink[] = [];
+  try {
+    const activeCategoryFilterCondition =
+      selectedCategoryFilter && selectedCategoryFilter !== "all"
+        ? selectedCategoryFilter === "resources"
+          ? and(
+              isNotNull(links.posterUrl),
+              or(
+                eq(links.category, "resources"),
+                eq(links.category, "landing-pages"),
+                eq(links.category, "friends")
+              )
+            )
+          : and(
+              isNotNull(links.posterUrl),
+              eq(links.category, selectedCategoryFilter)
+            )
+        : isNotNull(links.posterUrl);
+
+    curatedLinks = await db
+      .select()
+      .from(links)
+      .where(activeCategoryFilterCondition)
+      .orderBy(desc(links.createdAt));
+  } catch (databaseQueryError) {
+    console.error("Failed to load curated links from database:", databaseQueryError);
+  }
+
+  const activeCategoryPresentation =
+    CATEGORY_METADATA_REGISTRY[selectedCategoryFilter] ||
+    CATEGORY_METADATA_REGISTRY.all;
+
   return (
-    <div className="min-h-screen w-full bg-background text-foreground flex flex-col items-center max-w-4xl mx-auto">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <header className="w-full flex justify-center pt-6 pb-2">
-        <ModeToggle />
-      </header>
+    <div className="min-h-screen bg-background w-full">
+      {/* Mobile Header (visible on mobile only) */}
+      <div className="flex md:hidden items-center justify-between px-4 py-3 border-b border-border/50 bg-background/85 backdrop-blur-md sticky top-0 z-30">
+        <div className="flex items-center gap-2.5">
+          <KuraLogo className="size-6 text-foreground" />
+          <span className="subheading font-bold">
+            Kura
+          </span>
+        </div>
 
-      <DirectoryView />
+        <ModeToggle />
+      </div>
+
+      {/* Floating Mobile Dock Pill (Search + Menu triggering Vaul bottom drawer) */}
+      <MobileDock activeCategoryId={selectedCategoryFilter} />
+
+      {/* Perfectly Centered Content Layout constrained to max-w-4xl */}
+      <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 md:px-8 py-6 md:py-10 flex flex-col md:flex-row items-stretch md:items-start gap-8 md:gap-12 min-w-0">
+        {/* Desktop Sidebar (hidden on mobile) */}
+        <SideBar activeId={selectedCategoryFilter} />
+
+        {/* Main Gallery Area with Grid & List View Toggle */}
+        <main className="flex-1 w-full min-w-0 pb-24 md:pb-8">
+          <CuratedGallery
+            links={curatedLinks}
+            categoryTitle={activeCategoryPresentation.title}
+            categoryDescription={activeCategoryPresentation.description}
+            highPriorityImageCount={HIGH_PRIORITY_PREVIEW_IMAGE_COUNT}
+          />
+        </main>
+      </div>
     </div>
   );
 }
-
-export default Home;

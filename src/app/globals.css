@@ -2,20 +2,30 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@layer components {
-  .heading {
-    @apply text-xl md:text-2xl font-semibold text-foreground;
-  }
-  .subheading {
-    @apply text-base md:text-lg font-medium text-muted-foreground;
-  }
-  .body-text {
-    @apply text-sm md:text-base text-muted-foreground/90;
-  }
-  .small-text {
-    @apply text-xs md:text-sm text-muted-foreground;
-  }
+@font-face {
+  font-family: "M Saans";
+  src: url("/fonts/MSaansVF.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
 }
+
+@font-face {
+  font-family: "M Saans Medium";
+  src: url("/fonts/MSaansVF.woff2") format("woff2-variations");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "M Saans Medium Placeholder";
+  src: url("/fonts/MSaansVF.woff2") format("woff2-variations");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: oklch(0.99 0 0);
   --foreground: oklch(0 0 0);
@@ -49,14 +59,9 @@
   --sidebar-accent-foreground: oklch(0 0 0);
   --sidebar-border: oklch(0.94 0 0);
   --sidebar-ring: oklch(0 0 0);
-  --font-sans:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
-    "Noto Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans: "M Saans Medium", "M Saans Medium Placeholder", "M Saans", var(--font-m-saans), var(--font-geist-sans), sans-serif;
   --font-serif: Georgia, serif;
-  --font-mono:
-    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-    "Courier New", monospace;
+  --font-mono: Geist Mono, monospace;
   --radius: 0.5rem;
   --shadow-x: 0px;
   --shadow-y: 1px;
@@ -114,14 +119,9 @@
   --sidebar-accent-foreground: oklch(1 0 0);
   --sidebar-border: oklch(0.32 0 0);
   --sidebar-ring: oklch(0.72 0 0);
-  --font-sans:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
-    "Noto Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans: "M Saans Medium", "M Saans Medium Placeholder", "M Saans", var(--font-m-saans), var(--font-geist-sans), sans-serif;
   --font-serif: Georgia, serif;
-  --font-mono:
-    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-    "Courier New", monospace;
+  --font-mono: Geist Mono, monospace;
   --radius: 0.5rem;
   --shadow-x: 0px;
   --shadow-y: 1px;
@@ -197,12 +197,32 @@
   --shadow-2xl: var(--shadow-2xl);
 }
 
+@layer components {
+  .heading {
+    @apply text-2xl md:text-3xl lg:text-4xl font-bold text-foreground;
+  }
+  .subheading {
+    @apply text-base sm:text-lg font-semibold tracking-tight text-foreground;
+  }
+  .body-text {
+    @apply text-sm md:text-base lg:text-lg text-foreground/80 dark:text-foreground/85;
+  }
+  .small-text {
+    @apply text-xs md:text-sm lg:text-base text-muted-foreground;
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+  html,
   body {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
     font-family: var(--font-sans);
-    @apply bg-background text-foreground;
   }
 }
