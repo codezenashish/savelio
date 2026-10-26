@@ -2,30 +2,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@font-face {
-  font-family: "M Saans";
-  src: url("/fonts/MSaansVF.woff2") format("woff2-variations");
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "M Saans Medium";
-  src: url("/fonts/MSaansVF.woff2") format("woff2-variations");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "M Saans Medium Placeholder";
-  src: url("/fonts/MSaansVF.woff2") format("woff2-variations");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
   --background: oklch(0.99 0 0);
   --foreground: oklch(0 0 0);
@@ -59,7 +35,7 @@
   --sidebar-accent-foreground: oklch(0 0 0);
   --sidebar-border: oklch(0.94 0 0);
   --sidebar-ring: oklch(0 0 0);
-  --font-sans: "M Saans Medium", "M Saans Medium Placeholder", "M Saans", var(--font-m-saans), var(--font-geist-sans), sans-serif;
+  --font-sans: var(--font-m-saans), var(--font-geist-sans), system-ui, sans-serif;
   --font-serif: Georgia, serif;
   --font-mono: Geist Mono, monospace;
   --radius: 0.5rem;
@@ -119,7 +95,7 @@
   --sidebar-accent-foreground: oklch(1 0 0);
   --sidebar-border: oklch(0.32 0 0);
   --sidebar-ring: oklch(0.72 0 0);
-  --font-sans: "M Saans Medium", "M Saans Medium Placeholder", "M Saans", var(--font-m-saans), var(--font-geist-sans), sans-serif;
+  --font-sans: var(--font-m-saans), var(--font-geist-sans), system-ui, sans-serif;
   --font-serif: Georgia, serif;
   --font-mono: Geist Mono, monospace;
   --radius: 0.5rem;

@@ -5,8 +5,7 @@ import { KuraLogo } from "@/components/ui/kura-logo";
 import { db } from "@/db";
 import { links } from "@/db/schema";
 import { desc, isNotNull, eq, and, or } from "drizzle-orm";
-
-export const instant = false;
+import { unstable_cache } from "next/cache";
 
 type CuratedLink = typeof links.$inferSelect;
 
@@ -52,15 +51,11 @@ const CATEGORY_METADATA_REGISTRY: Record<string, CategoryPresentationDetails> = 
 
 const HIGH_PRIORITY_PREVIEW_IMAGE_COUNT = 4;
 
-export default async function Home({ searchParams }: HomePageProps) {
-  const resolvedSearchParams = searchParams ? await searchParams : {};
-  const selectedCategoryFilter = resolvedSearchParams?.category || "all";
-
-  let curatedLinks: CuratedLink[] = [];
-  try {
+const getCachedCuratedLinks = unstable_cache(
+  async (categoryFilter: string): Promise<CuratedLink[]> => {
     const activeCategoryFilterCondition =
-      selectedCategoryFilter && selectedCategoryFilter !== "all"
-        ? selectedCategoryFilter === "resources"
+      categoryFilter && categoryFilter !== "all"
+        ? categoryFilter === "resources"
           ? and(
               isNotNull(links.posterUrl),
               or(
@@ -71,15 +66,30 @@ export default async function Home({ searchParams }: HomePageProps) {
             )
           : and(
               isNotNull(links.posterUrl),
-              eq(links.category, selectedCategoryFilter)
+              eq(links.category, categoryFilter)
             )
         : isNotNull(links.posterUrl);
 
-    curatedLinks = await db
+    return db
       .select()
       .from(links)
       .where(activeCategoryFilterCondition)
       .orderBy(desc(links.createdAt));
+  },
+  ["curated-links-by-category"],
+  {
+    revalidate: 3600, // 1 hour edge cache revalidation
+    tags: ["links"],
+  }
+);
+
+export default async function Home({ searchParams }: HomePageProps) {
+  const resolvedSearchParams = searchParams ? await searchParams : {};
+  const selectedCategoryFilter = resolvedSearchParams?.category || "all";
+
+  let curatedLinks: CuratedLink[] = [];
+  try {
+    curatedLinks = await getCachedCuratedLinks(selectedCategoryFilter);
   } catch (databaseQueryError) {
     console.error("Failed to load curated links from database:", databaseQueryError);
   }

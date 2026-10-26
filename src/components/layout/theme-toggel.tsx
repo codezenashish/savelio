@@ -2,14 +2,8 @@
 
 import * as React from "react";
 import { useTheme } from "next-themes";
-import { MorphIcon } from "morphicons/react";
-import { Moon, Sun } from "lucide";
-import { createUISFX } from "uisfx";
+import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui";
-
-const soundEffectsPlayer = createUISFX({
-  pack: "zen",
-});
 
 const emptySubscribe = () => () => {};
 
@@ -33,7 +27,6 @@ export function ModeToggle() {
   const isCurrentThemeDark = theme === "dark";
 
   const handleThemeToggleClick = () => {
-    soundEffectsPlayer.play("press");
     setTheme(isCurrentThemeDark ? "light" : "dark");
   };
 
@@ -43,9 +36,13 @@ export function ModeToggle() {
       size="icon"
       onClick={handleThemeToggleClick}
       aria-label={isCurrentThemeDark ? "Switch to light theme" : "Switch to dark theme"}
-      className="size-9 rounded-lg border-border/70 text-muted-foreground hover:text-foreground"
+      className="size-9 rounded-lg border-border/70 text-muted-foreground hover:text-foreground cursor-pointer"
     >
-      <MorphIcon icon={isCurrentThemeDark ? Sun : Moon} size={17} />
+      {isCurrentThemeDark ? (
+        <Sun className="size-4.5 transition-transform duration-200 hover:rotate-45" />
+      ) : (
+        <Moon className="size-4.5 transition-transform duration-200 hover:-rotate-12" />
+      )}
     </Button>
   );
 }

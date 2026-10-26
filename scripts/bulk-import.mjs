@@ -1,5 +1,4 @@
 import fs from "fs";
-import path from "path";
 import dotenv from "dotenv";
 import { chromium } from "playwright";
 import sharp from "sharp";
@@ -49,16 +48,6 @@ async function uploadToR2(buffer, key, contentType = "image/webp") {
   return `${r2Endpoint.replace(/\/$/, "")}/${r2Bucket}/${key}`;
 }
 
-function extractDomainTitle(urlStr) {
-  try {
-    const parsed = new URL(urlStr);
-    const domain = parsed.hostname.replace(/^www\./, "");
-    return domain.charAt(0).toUpperCase() + domain.slice(1);
-  } catch {
-    return urlStr;
-  }
-}
-
 async function main() {
   console.log("🚀 Starting Enhanced Retry Pipeline for Pending Links...\n");
 
@@ -102,22 +91,22 @@ async function main() {
       process.stdout.write(`${progress} Retrying: ${item.url} ... `);
 
       const context = await browser.newContext({
-        viewport: { width: 1280, height: 720 },
-        deviceScaleFactor: 1,
+        viewport: { width: 1440, height: 900 },
+        deviceScaleFactor: 2,
         userAgent:
           "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
       });
 
       const page = await context.newPage();
 
-      // Use "commit" so we take screenshot as soon as first content arrives
+      // Wait until DOM content is loaded for complete rendering
       await page.goto(item.url, {
-        waitUntil: "commit",
-        timeout: 20000,
+        waitUntil: "domcontentloaded",
+        timeout: 25000,
       });
 
-      // Wait 1.5s for initial layout
-      await page.waitForTimeout(1500);
+      // Wait for fonts, layouts and hero assets to settle
+      await page.waitForTimeout(2000);
 
       let pageTitle = item.title;
       try {
@@ -137,14 +126,14 @@ async function main() {
 
       await context.close();
 
-      // Sharp compress to WebP
+      // Sharp compress to high-fidelity 16:10 WebP
       const webpBuffer = await sharp(rawBuffer)
-        .resize(1280, 720, {
+        .resize(1280, 800, {
           fit: "cover",
           position: "top",
         })
         .webp({
-          quality: 80,
+          quality: 85,
           effort: 4,
         })
         .toBuffer();

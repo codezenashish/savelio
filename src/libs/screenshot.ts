@@ -64,8 +64,8 @@ export async function captureAndUploadPreview(
 
   try {
     const browserExecutionContext = await headlessBrowserInstance.newContext({
-      viewport: { width: 1280, height: 720 },
-      deviceScaleFactor: 1,
+      viewport: { width: 1440, height: 900 },
+      deviceScaleFactor: 2,
       userAgent:
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
     });
@@ -75,26 +75,26 @@ export async function captureAndUploadPreview(
     // 2. Navigate to target URL with timeout
     await browserPage.goto(normalizedTargetUrl, {
       waitUntil: "domcontentloaded",
-      timeout: 15000,
+      timeout: 20000,
     });
 
-    // Wait for animations and layout shifts to settle
-    await browserPage.waitForTimeout(1200);
+    // Wait for web fonts, hero animations and layout shifts to settle
+    await browserPage.waitForTimeout(2000);
 
-    // 3. Capture raw PNG screenshot buffer (viewport 1280x720)
+    // 3. Capture raw PNG screenshot buffer (viewport 1440x900 @2x)
     const uncompressedScreenshotPngBuffer = await browserPage.screenshot({
       type: "png",
       fullPage: false,
     });
 
-    // 4. Sharp compression: 1280x720 WebP with high efficiency (~30-40 KB)
+    // 4. Sharp compression: 1280x800 WebP (16:10 aspect ratio matching preview cards)
     const compressedScreenshotWebpBuffer = await sharp(uncompressedScreenshotPngBuffer)
-      .resize(1280, 720, {
+      .resize(1280, 800, {
         fit: "cover",
         position: "top",
       })
       .webp({
-        quality: 80,
+        quality: 85,
         effort: 4,
       })
       .toBuffer();

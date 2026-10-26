@@ -2,6 +2,13 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
 export async function proxy(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  // Fast-path bypass for API routes that do not require session management
+  if (pathname.startsWith("/api/poster") || pathname.startsWith("/api/favicon")) {
+    return NextResponse.next();
+  }
+
   let forwardResponse = NextResponse.next({
     request: {
       headers: request.headers,
@@ -14,12 +21,24 @@ export async function proxy(request: NextRequest) {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   if (!supabaseProjectUrl || !supabaseAnonymousOrPublishableKey) {
-    if (request.nextUrl.pathname.startsWith("/dashboard")) {
+    if (pathname.startsWith("/dashboard")) {
       const redirectAuthenticationUrl = request.nextUrl.clone();
       redirectAuthenticationUrl.pathname = "/login";
       redirectAuthenticationUrl.searchParams.set("error", "auth_config_missing");
       return NextResponse.redirect(redirectAuthenticationUrl);
     }
+    return forwardResponse;
+  }
+
+  // Only execute remote auth check if accessing protected routes
+  // or if auth session cookies are present
+  const hasAuthCookie = request.cookies
+    .getAll()
+    .some((cookie) => cookie.name.startsWith("sb-"));
+
+  const isProtectedRoute = pathname.startsWith("/dashboard");
+
+  if (!isProtectedRoute && !hasAuthCookie) {
     return forwardResponse;
   }
 
@@ -46,12 +65,12 @@ export async function proxy(request: NextRequest) {
     }
   );
 
-  // IMPORTANT: Keep this call untouched to ensure sessions stay refreshed
+  // Authenticate user for protected routes or refresh existing active session
   const {
     data: { user: authenticatedUser },
   } = await supabaseServerClient.auth.getUser();
 
-  if (!authenticatedUser && request.nextUrl.pathname.startsWith("/dashboard")) {
+  if (!authenticatedUser && isProtectedRoute) {
     const redirectAuthenticationUrl = request.nextUrl.clone();
     redirectAuthenticationUrl.pathname = "/login";
     return NextResponse.redirect(redirectAuthenticationUrl);
@@ -67,8 +86,9 @@ export const config = {
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
+     * - api/poster & api/favicon (public image and favicon delivery)
      * - Images / static assets
      */
-    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    "/((?!_next/static|_next/image|favicon.ico|api/poster|api/favicon|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
   ],
 };

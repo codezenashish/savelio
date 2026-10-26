@@ -3,7 +3,6 @@
 
 import React, { useState } from "react";
 import { Star, ArrowUpRight, Globe, Copy, Check } from "lucide-react";
-import { ThinkingOrb } from "thinking-orbs";
 
 export interface PreviewCardProps {
   id?: string;
@@ -82,11 +81,9 @@ export function PreviewCard({
       {/* Background Screenshot Image with Loading Skeleton */}
       {posterUrl && !hasImageLoadFailed ? (
         <>
-          {/* Animated ThinkingOrb loading state UI while poster image downloads */}
+          {/* Lightweight CSS shimmer skeleton while image is downloading */}
           {!isImageLoaded && (
-            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-muted/30 backdrop-blur-2xs transition-opacity duration-300">
-              <ThinkingOrb state="searching" size={64} />
-            </div>
+            <div className="absolute inset-0 z-10 bg-muted/40 animate-pulse transition-opacity duration-300" />
           )}
 
           <img

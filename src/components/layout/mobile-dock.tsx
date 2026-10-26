@@ -14,7 +14,7 @@ export interface MobileDockProps {
   className?: string;
 }
 
-export function MobileDock({
+function MobileDockInner({
   activeCategoryId,
   onCategorySelect,
   className = "",
@@ -233,6 +233,14 @@ export function MobileDock({
         </Drawer.Portal>
       </Drawer.Root>
     </>
+  );
+}
+
+export function MobileDock(props: MobileDockProps) {
+  return (
+    <React.Suspense fallback={null}>
+      <MobileDockInner {...props} />
+    </React.Suspense>
   );
 }
 

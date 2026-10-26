@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { LayoutGrid, List } from "lucide-react";
 import { PreviewCard } from "./preview-card";
 import { ListItem } from "./list-item";
@@ -23,28 +23,33 @@ export interface CuratedGalleryProps {
   highPriorityImageCount?: number;
 }
 
+const emptySubscribe = () => () => {};
+const getViewModeSnapshot = (): "grid" | "list" => {
+  try {
+    const val = localStorage.getItem("kura_gallery_view_mode");
+    return val === "list" ? "list" : "grid";
+  } catch {
+    return "grid";
+  }
+};
+const getServerViewModeSnapshot = (): "grid" | "list" => "grid";
+
 export function CuratedGallery({
   links,
   categoryTitle,
   categoryDescription,
   highPriorityImageCount = 4,
 }: CuratedGalleryProps) {
-  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
-
-  // Hydrate view mode preference from localStorage on client mount
-  useEffect(() => {
-    try {
-      const savedPreference = localStorage.getItem("kura_gallery_view_mode");
-      if (savedPreference === "list" || savedPreference === "grid") {
-        setViewMode(savedPreference);
-      }
-    } catch {
-      // Ignore localStorage read errors in private browsing modes
-    }
-  }, []);
+  const syncedViewMode = React.useSyncExternalStore(
+    emptySubscribe,
+    getViewModeSnapshot,
+    getServerViewModeSnapshot
+  );
+  const [localViewMode, setLocalViewMode] = useState<"grid" | "list" | null>(null);
+  const viewMode = localViewMode ?? syncedViewMode;
 
   const handleViewModeToggle = (targetMode: "grid" | "list") => {
-    setViewMode(targetMode);
+    setLocalViewMode(targetMode);
     try {
       localStorage.setItem("kura_gallery_view_mode", targetMode);
     } catch {
@@ -104,8 +109,13 @@ export function CuratedGallery({
           /* Grid View Layout (with ThinkingOrb image loader) */
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 w-full min-w-0 max-w-full">
             {links.map((curatedLink, linkIndex) => {
+              const publicR2BaseUrl =
+                process.env.NEXT_PUBLIC_R2_PUBLIC_URL ||
+                process.env.NEXT_PUBLIC_CLOUDFLARE_R2_PUBLIC_URL;
               const posterApiEndpoint = curatedLink.posterUrl
-                ? `/api/poster/${curatedLink.id}`
+                ? publicR2BaseUrl
+                  ? `${publicR2BaseUrl.replace(/\/$/, "")}/items/${curatedLink.id}/poster.webp`
+                  : `/api/poster/${curatedLink.id}`
                 : undefined;
 
               return (

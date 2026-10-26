@@ -91,15 +91,18 @@ export async function GET(
       headers: {
         "Content-Type": mimeContentType,
         "Content-Length": byteLengthString,
-        "Cache-Control": "public, max-age=31536000, immutable",
+        "Cache-Control": "public, max-age=31536000, s-maxage=31536000, immutable",
+        "CDN-Cache-Control": "public, max-age=31536000, immutable",
+        "Vercel-CDN-Cache-Control": "public, max-age=31536000, immutable",
         "X-Cache": "MISS",
       },
     });
-  } catch (storageRetrievalError: any) {
-    if (storageRetrievalError?.name === "NoSuchKey") {
+  } catch (storageRetrievalError: unknown) {
+    const errorDetails = storageRetrievalError as { name?: string; message?: string };
+    if (errorDetails?.name === "NoSuchKey") {
       return new NextResponse("Image not found", { status: 404 });
     }
-    console.error(`[API Poster] Error serving ${storageAssetObjectKey}:`, storageRetrievalError?.message);
+    console.error(`[API Poster] Error serving ${storageAssetObjectKey}:`, errorDetails?.message);
     return new NextResponse("Failed to load image from storage", { status: 500 });
   }
 }

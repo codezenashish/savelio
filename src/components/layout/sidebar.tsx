@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import {
@@ -9,11 +9,8 @@ import {
   LayoutGrid,
   Code2,
   Users,
-  Menu,
-  X,
   type LucideIcon,
 } from "lucide-react";
-import { Drawer } from "vaul";
 import { Button } from "@/components/ui/button";
 import { KuraLogo } from "@/components/ui/kura-logo";
 import ModeToggle from "./theme-toggel";
@@ -64,7 +61,7 @@ interface SidebarContentProps {
   onCategorySelect?: (categoryId: string) => void;
 }
 
-export function SidebarContent({
+function SidebarContentInner({
   selectedCategoryId,
   onCategorySelect,
 }: SidebarContentProps) {
@@ -177,6 +174,14 @@ export function SidebarContent({
         <ModeToggle />
       </div>
     </div>
+  );
+}
+
+export function SidebarContent(props: SidebarContentProps) {
+  return (
+    <React.Suspense fallback={null}>
+      <SidebarContentInner {...props} />
+    </React.Suspense>
   );
 }
 

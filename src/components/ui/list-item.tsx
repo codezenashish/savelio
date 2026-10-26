@@ -2,11 +2,10 @@
 
 import React, { useState, useEffect } from "react";
 import { ArrowUpRight } from "lucide-react";
-import { ThinkingOrb } from "thinking-orbs";
 import Image from "next/image";
 
 export interface ListItemProps {
-  id: string;
+  id?: string;
   title?: string | null;
   url: string;
   description?: string | null;
@@ -72,13 +71,11 @@ function parseTitleAndDescription(
 }
 
 export function ListItem({
-  id: _id,
   title: rawTitle,
   url,
   description: rawDescription,
   className = "",
 }: ListItemProps) {
-  const [hasFaviconError, setHasFaviconError] = useState(false);
   const [isFaviconLoaded, setIsFaviconLoaded] = useState(false);
 
   const domain = extractHostname(url);
@@ -108,15 +105,10 @@ export function ListItem({
       aria-label={`${title}: ${description || domain}`}
       className={`group flex items-baseline gap-2.5 sm:gap-3 w-full min-w-0 max-w-full overflow-hidden py-2 px-2.5 rounded-lg transition-colors duration-150 hover:bg-muted/50 cursor-pointer select-none text-sm sm:text-base leading-relaxed ${className}`}
     >
-      {/* Favicon Slot with ThinkingOrb Animated Loading State */}
+      {/* Favicon Slot with Lightweight Skeleton */}
       <div className="relative size-4 shrink-0 flex items-center justify-center self-center overflow-hidden rounded-xs">
-        {/* Animated ThinkingOrb shown during favicon download */}
         {!isFaviconLoaded && (
-          <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-            <div className="scale-[0.25] origin-center shrink-0 flex items-center justify-center">
-              <ThinkingOrb size={64} state="searching" />
-            </div>
-          </div>
+          <div className="absolute inset-0 bg-muted/60 animate-pulse rounded-xs" />
         )}
 
         <Image

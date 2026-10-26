@@ -13,13 +13,12 @@ const postgresClientInstance =
   globalDatabaseConnectionStore.cachedConnection ??
   postgres(postgresConnectionString, {
     prepare: false, // Recommended for Supabase connection pooler (port 6543)
+    max: process.env.NODE_ENV === "production" ? 2 : 10,
     idle_timeout: 20,
     max_lifetime: 60 * 30,
     connect_timeout: 10,
   });
 
-if (process.env.NODE_ENV !== "production") {
-  globalDatabaseConnectionStore.cachedConnection = postgresClientInstance;
-}
+globalDatabaseConnectionStore.cachedConnection = postgresClientInstance;
 
 export const db = drizzle(postgresClientInstance, { schema });
