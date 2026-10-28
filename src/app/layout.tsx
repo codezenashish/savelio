@@ -40,7 +40,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
       className={`${mSaans.variable} ${geistSans.variable} ${geistMono.variable} h-full antialiased font-sans`}
     >
-      <body className="min-h-full flex flex-col overflow-x-hidden w-full max-w-full">
+      <body className="min-h-full flex flex-col overflow-x-clip w-full max-w-full">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

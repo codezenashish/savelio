@@ -71,7 +71,7 @@ function SidebarContentInner({
     selectedCategoryId ?? (urlQueryCategory || "all");
 
   return (
-    <div className="flex flex-col min-h-[calc(100vh-5rem)] justify-between gap-6 select-none bg-background text-foreground">
+    <div className="flex flex-col h-full justify-between gap-6 select-none bg-background text-foreground">
       <div className="flex flex-col gap-5">
         {/* Kura Brand Logo */}
         <div className="flex items-center pt-1">
@@ -84,33 +84,10 @@ function SidebarContentInner({
           </Link>
         </div>
 
-        {/* App Description & Powered By */}
-        <div className="flex flex-col gap-2.5">
-          <p className="small-text leading-snug">
-            Curated collection of A/B test results from best-in-class apps
-          </p>
-
-          <div className="flex items-center gap-1.5 small-text">
-            <span>Powered by</span>
-            <span className="inline-flex items-center gap-1.5 font-bold text-foreground">
-              <svg
-                className="h-3 w-auto fill-current inline-block"
-                viewBox="0 0 28 14"
-                fill="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M2.5 12V2.5L7 8.5L11.5 2.5V12M16.5 12V2.5L21 8.5L25.5 2.5V12"
-                  stroke="currentColor"
-                  strokeWidth="2.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              Mobbin
-            </span>
-          </div>
-        </div>
+        {/* App Description */}
+        <p className="small-text leading-snug">
+          Curated collection of A/B test results from best-in-class apps
+        </p>
 
         {/* Action Button */}
         <Button
@@ -199,7 +176,7 @@ export const SideBar: React.FC<SideBarProps> = ({
   return (
     <aside
       aria-label="Sidebar navigation"
-      className={`hidden md:flex flex-col w-56 lg:w-60 shrink-0 sticky top-10 self-start bg-background text-foreground justify-between ${className}`}
+      className={`hidden md:flex flex-col w-56 lg:w-60 shrink-0 sticky top-10 self-start h-[calc(100vh-5rem)] bg-background text-foreground justify-between ${className}`}
     >
       <SidebarContent
         selectedCategoryId={activeId}
