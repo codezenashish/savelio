@@ -1,11 +1,17 @@
 "use client";
 
+import React, { useEffect } from "react";
+
 interface GalleryErrorProps {
   error: Error & { digest?: string };
   reset: () => void;
 }
 
-export default function GalleryError({ reset }: GalleryErrorProps) {
+export default function GalleryError({ error, reset }: GalleryErrorProps) {
+  useEffect(() => {
+    console.error("GalleryError caught:", error);
+  }, [error]);
+
   return (
     <main className="mx-auto flex min-h-[60vh] w-full max-w-xl flex-col items-center justify-center gap-3 px-6 text-center">
       <h1 className="heading">Resources couldn’t load</h1>
