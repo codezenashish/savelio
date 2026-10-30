@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/layout/theme-provider";
+import { getSiteUrl } from "@/libs/site-url";
 import "./globals.css";
 
 const mSaans = localFont({
@@ -21,9 +22,13 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = getSiteUrl();
+
 export const metadata: Metadata = {
+  ...(siteUrl ? { metadataBase: siteUrl } : {}),
+  applicationName: "Kura",
   title: "Kura — Curated Developer Tools & Inspiration",
-  description: "Curated collection of standout developer tools, libraries, and design inspiration.",
+  description: "A curated library of useful developer tools, open-source libraries, and design resources.",
   icons: {
     icon: [
       { url: "/logo-square.svg", type: "image/svg+xml" },

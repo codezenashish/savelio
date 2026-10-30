@@ -54,6 +54,18 @@ export const SIDEBAR_NAVIGATION_OPTIONS: NavigationItem[] = [
     href: "/?category=portfolio",
     icon: Users,
   },
+  {
+    id: "landing-pages",
+    label: "Landing Pages",
+    href: "/?category=landing-pages",
+    icon: Images,
+  },
+  {
+    id: "friends",
+    label: "By Friends",
+    href: "/?category=friends",
+    icon: Users,
+  },
 ];
 
 interface SidebarContentProps {
@@ -86,7 +98,7 @@ function SidebarContentInner({
 
         {/* App Description */}
         <p className="small-text leading-snug">
-          Curated collection of A/B test results from best-in-class apps
+          Curated developer tools, libraries, and design resources.
         </p>
 
         {/* Action Button */}

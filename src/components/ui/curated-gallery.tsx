@@ -13,14 +13,13 @@ export interface CuratedGalleryLink {
   posterUrl: string | null;
   category: string | null;
   isStarred: boolean | null;
-  createdAt: Date;
+  createdAt: Date | string;
 }
 
 export interface CuratedGalleryProps {
   links: CuratedGalleryLink[];
   categoryTitle: string;
   categoryDescription: string;
-  highPriorityImageCount?: number;
 }
 
 const emptySubscribe = () => () => {};
@@ -38,7 +37,6 @@ export function CuratedGallery({
   links,
   categoryTitle,
   categoryDescription,
-  highPriorityImageCount = 4,
 }: CuratedGalleryProps) {
   const syncedViewMode = React.useSyncExternalStore(
     emptySubscribe,
@@ -64,7 +62,7 @@ export function CuratedGallery({
         <div className="min-w-0 flex-1">
           <h1 className="heading truncate">{categoryTitle}</h1>
           <p className="small-text mt-0.5 truncate">
-            {categoryDescription} ({links.length} items)
+            {categoryDescription} Showing {links.length} resources on this page.
           </p>
         </div>
 
@@ -124,8 +122,9 @@ export function CuratedGallery({
                   id={curatedLink.id}
                   url={curatedLink.url}
                   title={curatedLink.title || ""}
+                  description={curatedLink.description || ""}
                   posterUrl={posterApiEndpoint}
-                  priority={linkIndex < highPriorityImageCount}
+                  priority={linkIndex === 0}
                   initialStarred={curatedLink.isStarred ?? false}
                 />
               );

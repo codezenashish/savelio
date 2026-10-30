@@ -1,5 +1,9 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Production site URL
+
+Set `SITE_URL` to the canonical public origin (for example, `https://your-domain.com`) in the Vercel Production environment and local `.env.local`. The value is used to build canonical metadata and the sitemap. Preview deployments should keep their own URL out of this setting.
+
 ## Getting Started
 
 First, run the development server:

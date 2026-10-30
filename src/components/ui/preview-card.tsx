@@ -7,6 +7,7 @@ import { Star, ArrowUpRight, Globe, Copy, Check } from "lucide-react";
 export interface PreviewCardProps {
   id?: string;
   title?: string;
+  description?: string;
   url: string;
   posterUrl?: string;
   initialStarred?: boolean;
@@ -39,6 +40,7 @@ function formatDisplayUrl(rawTargetUrl: string): string {
 export function PreviewCard({
   id = "",
   title,
+  description,
   url,
   posterUrl,
   initialStarred = false,
@@ -54,6 +56,12 @@ export function PreviewCard({
 
   const displayUrl = formatDisplayUrl(url);
   const destinationUrl = url.startsWith("http") ? url : `https://${url}`;
+
+  const handleImageRef = React.useCallback((node: HTMLImageElement | null) => {
+    if (node && node.complete && node.naturalWidth > 0) {
+      setIsImageLoaded(true);
+    }
+  }, []);
 
   const handleStarButtonClick = (mouseClickEvent: React.MouseEvent) => {
     mouseClickEvent.stopPropagation();
@@ -71,12 +79,26 @@ export function PreviewCard({
     setTimeout(() => setHasCopiedUrlToClipboard(false), 1500);
   };
 
+  const handleCardClick = () => {
+    if (onClick) {
+      onClick();
+    } else {
+      window.open(destinationUrl, "_blank", "noopener,noreferrer");
+    }
+  };
+
   return (
     <div
-      onClick={onClick}
-      role={onClick ? "button" : "region"}
-      tabIndex={onClick ? 0 : undefined}
-      className={`group relative aspect-16/10 w-full overflow-hidden rounded-2xl border border-border bg-card text-card-foreground  transition-all duration-200 hover:border-foreground/30  cursor-pointer select-none ${className}`}
+      onClick={handleCardClick}
+      onKeyDown={(keyboardEvent) => {
+        if (keyboardEvent.key === "Enter" || keyboardEvent.key === " ") {
+          keyboardEvent.preventDefault();
+          handleCardClick();
+        }
+      }}
+      role="button"
+      tabIndex={0}
+      className={`group relative aspect-16/10 w-full overflow-hidden rounded-2xl border border-border bg-card text-card-foreground transition-all duration-200 hover:border-foreground/30 cursor-pointer select-none ${className}`}
     >
       {/* Background Screenshot Image with Loading Skeleton */}
       {posterUrl && !hasImageLoadFailed ? (
@@ -87,7 +109,10 @@ export function PreviewCard({
           )}
 
           <img
+            ref={handleImageRef}
             src={posterUrl}
+            width={1280}
+            height={800}
             alt={title || displayUrl || "Website preview"}
             loading={priority ? "eager" : "lazy"}
             fetchPriority={priority ? "high" : "low"}
